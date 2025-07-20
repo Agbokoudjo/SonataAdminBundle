@@ -61,10 +61,7 @@ file that was distributed with this source code.
                                             </th>
                                         {% elseif field_description.name == constant('Sonata\\AdminBundle\\Datagrid\\ListMapper::NAME_SELECT') %}
                                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-select"></th>
-                                        {% elseif field_description.name == constant('Sonata\\AdminBundle\\Datagrid\\ListMapper::NAME_ACTIONS') and app.request.isXmlHttpRequest %}
-                                            {# NEXT_MAJOR: Remove this case in version 5 and recommend using the option `ajax_hidden` instead. #}
-                                            {# Action buttons disabled in ajax view! #}
-                                        {% elseif field_description.getOption('ajax_hidden') == true and app.request.isXmlHttpRequest %}
+                                        {% if field_description.getOption('ajax_hidden') == true and app.request.isXmlHttpRequest %}
                                             {# Disable fields with 'ajax_hidden' option set to true #}
                                         {% else %}
                                             {% set sortable = false %}
@@ -151,7 +148,7 @@ file that was distributed with this source code.
                                         {% block batch %}
                                             <script>
                                                 {% block batch_javascript %}
-                                                    jQuery(document).ready(function ($) {
+                                                    jQuery(function ($) {
                                                         // Toggle individual checkboxes when the batch checkbox is changed
                                                         $('#list_batch_checkbox').on('ifChanged change', function () {
                                                             var checkboxes = $(this)
@@ -181,13 +178,13 @@ file that was distributed with this source code.
                                             </script>
 
                                         {% block batch_actions %}
-                                            <label class="checkbox" for="{{ admin.uniqid }}_all_elements">
+                                            <label class="checkbox form-label form-check-label me-2 d-flex align-items-center label-delete-footer flex-wrap" for="{{ admin.uniqid }}_all_elements">
                                                 <input type="checkbox" name="all_elements" id="{{ admin.uniqid }}_all_elements">
                                                 {{ 'all_elements'|trans({}, 'SonataAdminBundle') }}
                                                 ({{ admin.datagrid.pager.countResults() }})
                                             </label>
 
-                                            <select name="action" style="width: auto; height: auto" class="form-control">
+                                            <select name="action" style="width: auto; height: auto" class="form-select form-control">
                                                 {% for action, options in batchactions %}
                                                     <option value="{{ action }}">
                                                         {% if options.translation_domain is defined and options.translation_domain is same as(false) %}
@@ -200,7 +197,7 @@ file that was distributed with this source code.
                                             </select>
                                         {% endblock %}
 
-                                            <input type="submit" class="btn btn-small btn-primary" value="{{ 'btn_batch'|trans({}, 'SonataAdminBundle') }}">
+                                            <input type="submit" class="btn btn-small  btn-batch-submit" value="{{ 'btn_batch'|trans({}, 'SonataAdminBundle') }}">
                                         {% endblock %}
                                     {% endif %}
                                 </div>
@@ -208,9 +205,9 @@ file that was distributed with this source code.
                                 <div class="pull-right">
                                     {% if admin.hasRoute('export') and admin.hasAccess('export') and export_formats|length %}
                                         <div class="btn-group">
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-bs-toggle="dropdown">
                                                 <i class="fas fa-share-square" aria-hidden="true"></i>
-                                                {{ "label_export_download"|trans({}, "SonataAdminBundle") }}
+                                                {{ 'label_export_download'|trans({}, 'SonataAdminBundle') }}
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu">
@@ -254,13 +251,12 @@ file that was distributed with this source code.
 {% endblock %}
 
 {% block list_filters_actions %}
-    {# NEXT_MAJOR: Remove |default(filter.option('show_filter')) #}
-    {% set displayableFilters = admin.datagrid.filters|filter(filter => filter.showFilter|default(filter.option('show_filter')) is not same as (false)) %}
+    {% set displayableFilters = admin.datagrid.filters|filter(filter => filter.showFilter is not same as (false)) %}
     {%- if displayableFilters|length %}
         <ul class="nav navbar-nav navbar-right" id="filter-list-{{ admin.uniqid() }}" {{ stimulus_controller('sonata-filter-list', {}, { 'active': 'active' }, { 'sonata-filter': '#filter-container-' ~ admin.uniqid() }) }}>
 
-            <li class="dropdown sonata-actions">
-                <a href="#" class="dropdown-toggle sonata-ba-action" data-toggle="dropdown">
+            <li class="dropdown sonata-actions sonata-filter-container">
+                <a href="#" class="btn dropdown-toggle sonata-ba-action sonata-ba-action-filter dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="fas fa-filter" aria-hidden="true"></i>
                     {{ 'link_filters'|trans({}, 'SonataAdminBundle') }}
                     <span class="badge" {{ stimulus_target('sonata-filter-list', 'counter') }}></span>
@@ -269,18 +265,15 @@ file that was distributed with this source code.
 
                 <ul class="dropdown-menu dropdown-menu-scrollable" role="menu">
                     {% for filter in displayableFilters %}
-                        {# NEXT_MAJOR: Remove |default(filter.option('show_filter')) #}
-                        {% set filterDisplayed = filter.isActive() or filter.showFilter|default(filter.option('show_filter')) is same as (true) %}
+                        {% set filterDisplayed = filter.isActive() or filter.showFilter is same as (true) %}
                         <li>
                             <a href="#" class="sonata-toggle-filter sonata-ba-action{% if filterDisplayed %} active{% endif %}" data-filter="filter-{{ admin.uniqid }}-{{ filter.name }}" {{ stimulus_target('sonata-filter-list', 'field') }} {{ stimulus_action('sonata-filter-list', 'toggle:prevent:stop', 'click') }}>
-                                <i class="far"></i>
+                                <i class="fa-regular fa-square"></i>
                                 {% if filter.label is not same as(false) %}
                                     {% if filter.translationDomain is same as(false) %}
                                         {{ filter.label }}
-                                    {% elseif filter.labelTranslationParameters is defined %}
+                                    {% else filter.labelTranslationParameters is defined %}
                                         {{ filter.label|trans(filter.labelTranslationParameters, filter.translationDomain ?? admin.translationDomain) }}
-                                    {% else %} {# NEXT_MAJOR: remove the else part and change elseif to else #}
-                                        {{ filter.label|trans(filter.option('label_translation_parameters', {}), filter.translationDomain ?? admin.translationDomain) }}
                                     {% endif %}
                                 {% endif %}
                             </a>
@@ -313,8 +306,7 @@ file that was distributed with this source code.
                             <div class="col-sm-9">
                                 {% set withAdvancedFilter = false %}
                                 {% for filter in admin.datagrid.filters %}
-                                    {# NEXT_MAJOR: Remove |default(filter.option('show_filter')) #}
-                                    {% set filterDisplayed = filter.isActive() or filter.showFilter|default(filter.option('show_filter')) is same as (true) %}
+                                    {% set filterDisplayed = filter.isActive() or filter.showFilter is same as (true) %}
                                     {% set filterCanBeDisplayed = filter.option('show_filter') is not same as(false) %}
                                     <div class="form-group {% block sonata_list_filter_group_class %}{% endblock %}" id="filter-{{ admin.uniqid }}-{{ filter.name }}" {{ stimulus_target('sonata-filter', 'group') }} {% if not filterDisplayed %}hidden{% endif %}>
                                         {% if filter.label is not same as(false) %}
@@ -345,9 +337,7 @@ file that was distributed with this source code.
                                             </div>
                                         {% endif %}
                                     </div>
-
-                                    {# NEXT_MAJOR: Remove |default(filter.option('advanced_filter')) #}
-                                    {% if filter.withAdvancedFilter|default(filter.option('advanced_filter')) %}
+                                    {% if filter.withAdvancedFilter %}
                                         {% set withAdvancedFilter = true %}
                                     {% endif %}
                                 {% endfor %}

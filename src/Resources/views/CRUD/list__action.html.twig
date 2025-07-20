@@ -12,9 +12,14 @@ file that was distributed with this source code.
 {% extends get_admin_template('base_list_field', admin.code) %}
 
 {% block field %}
-    <div class="btn-group">
-        {% for actions in field_description.option('actions') %}
-            {% include actions.template %}
-        {% endfor %}
-    </div>
+  <div class="btn-group list-actions">
+    <button type="button" class="btn btn-color-toggle dropdown-toggle btn-object-item-actions" data-bs-toggle="dropdown" aria-expanded="false"><span class="h1">...</span></button>
+    <ul class="dropdown-menu">
+      {% for actions in field_description.option('actions') %}
+        <li class="dropdown-item dropdown-item-action h4">
+          {% include actions.template %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}

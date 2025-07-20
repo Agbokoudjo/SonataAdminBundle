@@ -34,28 +34,40 @@ footer {
   }
 }
 
-.logo {
-  img {
-    display: inline;
-    max-height: 100%;
-    max-width: 60px;
-    padding-bottom: 4px;
-  }
-
-  span {
-    display: inline-block;
-    line-height: 1;
-    vertical-align: middle;
-    width: 200px;
-  }
-
-  img + span {
-    width: 140px;
-  }
+body{
+  font-size:1rem;
+  font-family: Arial, serif;
+  width:100%;
+  min-width:100%;
+  max-width:100%;
+}
+.logo img {
+  display: inline;
+  max-height: 100%;
+  max-width: 60px;
+  padding-bottom: 4px;
+}
+.logo  span {
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  width: 200px;
+}
+.logo .img .logo span {
+  width: 140px;
 }
 
+/*sidebar*/
+#app-sidebar{
+  background-color:  #00427E;
+  overflow-y:auto ;
+  color:#ffff;
+}
+
+
 body > .header .logo {
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: Arial, sans-serif;
+  transition: background-color 0.3s, border-bottom 0.3s;
 }
 
 .main-header {
@@ -91,16 +103,7 @@ body > .header .logo {
   border-bottom: 1px solid #e7e7e7;
 }
 
-.navbar-brand {
-  padding-right: 20px;
 
-  img {
-    height: 28px;
-    margin: 0;
-    padding: 0 5px 0 0;
-    vertical-align: middle;
-  }
-}
 
 .navbar-text .navbar-link {
   padding: 0 10px;

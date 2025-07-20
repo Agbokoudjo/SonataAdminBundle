@@ -1,4 +1,4 @@
-/*!
+/** 
  * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -13,36 +13,23 @@ import '../scss/app.scss';
 // Require jQuery normally
 import $ from 'jquery';
 
-// jQuery scrollTo is not directly used in SonataAdmin
-// but it is used on SonataPage, SonataArticle and SonataDashboard
-import 'jquery.scrollto';
-
-// Only using sortable widget from jQuery UI library
+import 'admin-lte/dist/js/adminlte.min';
 import 'jquery-ui/ui/widget';
 import 'jquery-ui/ui/widgets/sortable';
-import 'bootstrap';
-
+import 'waypoints/lib/noframework.waypoints';
+import 'waypoints/lib/shortcuts/sticky';
+import 'readmore-js';
 import 'jquery-form';
-
-// Boostrap 3 JavaScript for the X-editable library
-import 'x-editable/dist/bootstrap3-editable/js/bootstrap-editable';
-
-// Full version of Select2, needed because SonataAdmin needs
-// compat dropdownCss and it only comes on the full version
-import 'select2/dist/js/select2.full';
-import 'admin-lte';
 import 'icheck';
-
-// jQuery SlimScroll is used in AdminLTE v2
-import 'jquery-slimscroll';
+import 'jquery.scrollto';
 import 'masonry-layout';
-
+import 'bootstrap';
+import 'select2/dist/js/select2.min';
 // SonataAdmin custom scripts
 import './admin';
 import './treeview';
 import './sidebar';
 import './base';
-
 import * as stimulus from '@hotwired/stimulus';
 
 import { sonataApplication } from './stimulus';

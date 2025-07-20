@@ -52,6 +52,29 @@ file that was distributed with this source code.
             {% for stylesheet in sonata_config.getOption('stylesheets', []) %}
                 <link rel="stylesheet" href="{{ asset(stylesheet.path, stylesheet.package_name) }}">
             {% endfor %}
+        <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+      integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q="
+      crossorigin="anonymous"
+      media="print"
+      onload="this.media='all'"
+    />
+    <!--end::Fonts-->
+
+    <!--begin::Third Party Plugin(OverlayScrollbars)-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.css" integrity="sha256-4MX+61mt9NVvvuPjUWdUdyfZfxSB1/Rf9WtqRHgG5S0=" crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css" integrity="sha256-+uGLJmmTKOqBr+2E6KDYs/NRsHxSkONXFHUL0fy2O/4=" crossorigin="anonymous" />
         {% endblock %}
 
         {% block javascripts %}
@@ -95,15 +118,17 @@ file that was distributed with this source code.
                 {% if _use_icheck %}sonata-icheck{% endif %}
                 {% if app.request.cookies.get('sonata_sidebar_hide') -%}
                     sidebar-collapse
-                {%- endif -%}"
+                {%- endif -%}
+                layout-fixed sidebar-expand-lg sidebar-mini 
+                "
                 {{ stimulus_controller('sonata-sticky') }}
             {%- endblock -%}
     >
 
-    <div class="wrapper">
+    <div class="app-wrapper">
 
         {% block sonata_header %}
-            <header class="main-header">
+            <nav class="app-header navbar navbar-expand">
                 {% block sonata_header_noscript_warning %}
                     <noscript>
                         <div class="noscript-warning">
@@ -111,26 +136,14 @@ file that was distributed with this source code.
                         </div>
                     </noscript>
                 {% endblock %}
-                {% block logo %}
-                    <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
-                        {% if 'icon' == sonata_config.getOption('logo_content') or 'all' == sonata_config.getOption('logo_content') %}
-                            <img src="{{ asset(sonata_config.logo) }}" alt="{{ sonata_config.title }}">
-                        {% endif %}
-                        {% if 'text' == sonata_config.getOption('logo_content') or 'all' == sonata_config.getOption('logo_content') %}
-                            <span>{{ sonata_config.title }}</span>
-                        {% endif %}
-                    </a>
-                {% endblock %}
                 {% block sonata_nav %}
-                    <nav class="navbar navbar-static-top" {{ stimulus_target('sonata-sticky', 'topNavbar') }}>
-                        <a href="#" class="sidebar-toggle fa5" data-toggle="push-menu"
-                           role="button" title="{{ 'toggle_navigation'|trans({}, 'SonataAdminBundle') }}">
-                            <span class="sr-only">{{ 'toggle_navigation'|trans({}, 'SonataAdminBundle') }}</span>
-                        </a>
-
-                        <div class="navbar-left">
+                    <div class="container-fluid" {{ stimulus_target('sonata-sticky', 'topNavbar') }}>
+                        <ul class="navbar-nav">
+                             <li class="nav-item">
+                                <a class="nav-link sidebar-toggle" data-lte-toggle="sidebar" href="#" role="button"><i class="bi bi-list"></i></a>
+                             </li>
                             {% block sonata_breadcrumb %}
-                                <div class="hidden-xs">
+                                <ul class="nav-item hidden-xs">
                                     {% if _breadcrumb is not empty or action is defined %}
                                         <ol class="nav navbar-top-links breadcrumb">
                                             {% if _breadcrumb is empty %}
@@ -142,18 +155,18 @@ file that was distributed with this source code.
                                             {% endif %}
                                         </ol>
                                     {% endif %}
-                                </div>
+                                </ul>
                             {% endblock sonata_breadcrumb %}
-                        </div>
+                        </ul>
 
                         {% block sonata_top_nav_menu %}
                             <div class="navbar-custom-menu">
-                                <ul class="nav navbar-nav">
+                                <ul class="navbar-nav ms-auto">
                                     {% block sonata_top_nav_menu_add_block %}
                                         {% set addBlock = include(get_global_template('add_block')) %}
                                         {% if addBlock|trim is not empty %}
-                                            <li class="dropdown">
-                                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                            <li class="nav-item dropdown">
+                                                <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#">
                                                     <i class="fas fa-plus-square fa-fw" aria-hidden="true"></i> <i class="fas fa-caret-down" aria-hidden="true"></i>
                                                 </a>
                                                 {{ addBlock|raw }}
@@ -164,8 +177,8 @@ file that was distributed with this source code.
                                         {% block sonata_top_nav_menu_user_block %}
                                             {% set userBlock = include(get_global_template('user_block')) %}
                                             {% if userBlock|trim is not empty %}
-                                                <li class="dropdown user-menu">
-                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                                <li class="nav-item  dropdown user-menu">
+                                                    <a class="dropdown-toggle" data-bs-toggle="dropdown" href="#">
                                                         <i class="fas fa-user fa-fw" aria-hidden="true"></i> <i class="fas fa-caret-down" aria-hidden="true"></i>
                                                     </a>
                                                     <ul class="dropdown-menu dropdown-user">
@@ -178,16 +191,29 @@ file that was distributed with this source code.
                                 </ul>
                             </div>
                         {% endblock %}
-                    </nav>
+                    </div>
                 {% endblock sonata_nav %}
-            </header>
+            </nav>
         {% endblock sonata_header %}
 
         {% block sonata_wrapper %}
             {% block sonata_left_side %}
-                <aside class="main-sidebar">
-                    <section class="sidebar">
+                <aside class="app-sidebar app-sidebar-custom shadow" id="app-sidebar">
+                    <div class="sidebar-brand">
+                        {% block logo %}
+                            <a class="logo" href="{{ path('sonata_admin_dashboard') }}">
+                                {% if 'icon' == sonata_config.getOption('logo_content') or 'all' == sonata_config.getOption('logo_content') %}
+                                    <img src="{{ asset(sonata_config.logo) }}" alt="{{ sonata_config.title }}">
+                                {% endif %}
+                                {% if 'text' == sonata_config.getOption('logo_content') or 'all' == sonata_config.getOption('logo_content') %}
+                                    <span>{{ sonata_config.title }}</span>
+                                {% endif %}
+                            </a>
+                        {% endblock %}
+                    </div>
+                    <div class="sidebar-wrapper" id="sidebar-wrapper">
                         {% block sonata_side_nav %}
+                         <nav class="mt-2 sidebar-nav-container">
                             {% block sonata_sidebar_search %}
                                 {% if sonata_config.getOption('search') %}
                                     <form action="{{ path('sonata_admin_search') }}" method="GET" class="sidebar-form" role="search">
@@ -213,14 +239,15 @@ file that was distributed with this source code.
                                     {% endblock %}
                                 </p>
                             {% endblock %}
+                             </nav>
                         {% endblock sonata_side_nav %}
-                    </section>
+                    </div>
                 </aside>
             {% endblock sonata_left_side %}
 
-            <div class="content-wrapper">
+            <main class="app-main shadow-lg content-wrapper">
                 {% block sonata_page_content %}
-                    <section class="content-header">
+                    <div class="app-content-header content-header">
 
                         {% block sonata_page_content_header %}
                             {% block sonata_page_content_nav %}
@@ -250,13 +277,7 @@ file that was distributed with this source code.
                                                     <div class="nav navbar-right btn-group">
                                                         {% for mode, settings in admin.listModes %}
                                                             <a href="{{ admin.generateUrl('list', app.request.query.all|merge({_list_mode: mode})) }}" class="btn btn-default navbar-btn btn-sm{% if admin.getListMode() == mode %} active{% endif %}">
-                                                                {# NEXT_MAJOR: Remove the if and keep the else part #}
-                                                                {% if settings.icon is not defined and settings.class is defined %}
-                                                                    {% deprecated 'Relying on the "class" setting is deprecated since sonata-project/admin-bundle 4.9, use the "icon" setting instead' %}
-                                                                    <i class="{{ settings.class }}" aria-hidden="true"></i>
-                                                                {% else %}
                                                                     {{ settings.icon|default('')|parse_icon }}
-                                                                {% endif %}
                                                             </a>
                                                         {% endfor %}
                                                     </div>
@@ -288,9 +309,9 @@ file that was distributed with this source code.
                                 {% endif %}
                             {% endblock sonata_page_content_nav %}
                         {% endblock sonata_page_content_header %}
-                    </section>
+                    </div>
 
-                    <section class="content">
+                    <div class="app-content">
                         {% block sonata_admin_content %}
 
                             {% block notice %}
@@ -325,10 +346,18 @@ file that was distributed with this source code.
                                 </div>
                             {% endif %}
                         {% endblock sonata_admin_content %}
-                    </section>
+                    </div>
                 {% endblock sonata_page_content %}
-            </div>
+            </main>
         {% endblock sonata_wrapper %}
+         <footer class="app-footer">
+        <div class="float-end d-none d-sm-inline">Anything you want</div>
+        <strong>
+          Copyright &copy; 2014-2025&nbsp;
+          <a href="https://adminlte.io" class="text-decoration-none">AdminLTE.io</a>.
+        </strong>
+        All rights reserved.
+      </footer>
     </div>
 
     {% if sonata_config.getOption('use_bootlint') %}
@@ -339,6 +368,42 @@ file that was distributed with this source code.
             </script>
         {% endblock %}
     {% endif %}
+     <script
+      src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+      const Default = {
+        scrollbarTheme: 'os-theme-light',
+        scrollbarAutoHide: 'leave',
+        scrollbarClickScroll: true,
+      };
+      document.addEventListener('DOMContentLoaded', function () {
+        const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
 
+        // Disable OverlayScrollbars on mobile devices to prevent touch interference
+        const isMobile = window.innerWidth <= 992;
+
+        if (
+          sidebarWrapper &&
+          OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined &&
+          !isMobile
+        ) {
+          OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+            scrollbars: {
+              theme: Default.scrollbarTheme,
+              autoHide: Default.scrollbarAutoHide,
+              clickScroll: Default.scrollbarClickScroll,
+            },
+          });
+        }
+      });
+    </script>
     </body>
 </html>
