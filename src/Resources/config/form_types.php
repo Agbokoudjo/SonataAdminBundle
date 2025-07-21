@@ -93,35 +93,6 @@ return static function (ContainerConfigurator $containerConfigurator): void {
                 'alias' => 'choice',
                 'extended_type' => SymfonyChoiceType::class,
             ])
-
-        // NEXT_MAJOR: Remove this service definition.
-        ->set('sonata.admin.form.filter.type.number', NumberType::class)
-            ->tag('form.type', ['alias' => 'sonata_type_filter_number'])
-
-        // NEXT_MAJOR: Remove this service definition.
-        ->set('sonata.admin.form.filter.type.choice', ChoiceType::class)
-            ->tag('form.type', ['alias' => 'sonata_type_filter_choice'])
-
-        // NEXT_MAJOR: Remove this service definition.
-        ->set('sonata.admin.form.filter.type.default', DefaultType::class)
-            ->tag('form.type', ['alias' => 'sonata_type_filter_default'])
-
-        // NEXT_MAJOR: Remove this service definition.
-        ->set('sonata.admin.form.filter.type.date', DateType::class)
-            ->tag('form.type', ['alias' => 'sonata_type_filter_date'])
-
-        // NEXT_MAJOR: Remove this service definition.
-        ->set('sonata.admin.form.filter.type.daterange', DateRangeType::class)
-            ->tag('form.type', ['alias' => 'sonata_type_filter_date_range'])
-
-        // NEXT_MAJOR: Remove this service definition.
-        ->set('sonata.admin.form.filter.type.datetime', DateTimeType::class)
-            ->tag('form.type', ['alias' => 'sonata_type_filter_datetime'])
-
-        // NEXT_MAJOR: Remove this service definition.
-        ->set('sonata.admin.form.filter.type.datetime_range', DateTimeRangeType::class)
-            ->tag('form.type', ['alias' => 'sonata_type_filter_datetime_range'])
-
         ->set('sonata.admin.form.data_transformer.boolean_to_string', BooleanToStringTransformer::class)
             ->args([
                 1,

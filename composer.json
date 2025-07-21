@@ -100,7 +100,11 @@
         "phpstan/phpstan-phpunit": "^1.0 || ^2.0",
         "phpstan/phpstan-strict-rules": "^1.0 || ^2.0",
         "phpstan/phpstan-symfony": "^1.0 || ^2.0",
+<<<<<<< HEAD
         "phpunit/phpunit": "^10.5.54 || ^11.5.38",
+=======
+        "phpunit/phpunit": "*",
+>>>>>>> 18662582d (Fix: remove deprecated arrayNode usage in Configuration for Symfony 6.4+)
         "psalm/plugin-phpunit": "^0.18 || ^0.19",
         "psalm/plugin-symfony": "^5.0",
         "psr/event-dispatcher": "^1.0",

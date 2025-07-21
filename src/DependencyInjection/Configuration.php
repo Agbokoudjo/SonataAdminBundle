@@ -312,28 +312,25 @@ final class Configuration implements ConfigurationInterface
                         ->booleanNode('use_bootlint')->defaultFalse()->end()
                         ->booleanNode('use_stickyforms')->defaultTrue()->end()
                         ->integerNode('pager_links')->defaultNull()->end()
-                        ->enumNode('form_type')
-                        ->defaultValue('standard')
-                        ->values(['standard', 'horizontal'])
-                        ->info('Defines the default layout for Symfony forms.')
-                        ->end()
-
+                       ->enumNode('form_type')
+                           ->defaultValue('standard')
+                           ->values(['standard', 'horizontal'])
+                       ->end()
                         ->scalarNode('default_admin_route')
-                        ->defaultValue('show')
-                        ->info('Name of the admin route to be used as a default to generate the link to the object.')
+                            ->defaultValue('show')
+                            ->info('Name of the admin route to be used as a default to generate the link to the object')
                         ->end()
-
                         ->scalarNode('default_group')
-                        ->defaultValue('default')
-                        ->info('Group used for admin services if one isn\'t provided.')
+                            ->defaultValue('default')
+                            ->info('Group used for admin services if one isn\'t provided.')
                         ->end()
-
-                    ->scalarNode('default_translation_domain')
-                    ->defaultValue('messages')
-                    ->info('Translation domain used as default if not provided in admin services.')
-                    ->end()
-
-                    ->end()
+                        ->scalarNode('default_translation_domain')
+                            ->defaultValue('messages')
+                            ->validate()
+                                ->always(static function (?string $value): ?string {
+                                    return $value;
+                                })
+                            ->end()
                             ->info('Translation domain used for admin services if one isn\'t provided.')
                         ->end()
                         ->scalarNode('default_icon')
@@ -392,7 +389,6 @@ final class Configuration implements ConfigurationInterface
                                 ->children()
                                     ->scalarNode('label')->end()
                                     ->scalarNode('translation_domain')->end()
-                                    ->end()
                                     ->scalarNode('icon')->end()
                                     ->scalarNode('on_top')->defaultFalse()->info('Show menu item in side dashboard menu without treeview')->end()
                                     ->scalarNode('keep_open')->defaultFalse()->info('Keep menu group always open')->end()
@@ -411,17 +407,15 @@ final class Configuration implements ConfigurationInterface
 
                                                     if (isset($item['admin'])) {
                                                         
-                                                        if ('' === $item['admin']) {
-                                                             throw new \InvalidArgumentException('Configuring an item with an empty admin is not allowed.');
-                                                        } else {
-                                                            if (isset($item['route'])) {     
+                                                            if (isset($item['route'])) {
+                                                               
                                                                 throw new \InvalidArgumentException('Parameter "route" is not expected when the "admin" is provided for array items');
                                                             }
 
                                                             if (isset($item['label'])) {
                                                                 throw new \InvalidArgumentException('Parameter "label" is not expected when the "admin" is provided for array items');
                                                             }
-                                                        }
+                                                        
 
                                                         continue;
                                                     }
