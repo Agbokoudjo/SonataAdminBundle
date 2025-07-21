@@ -86,7 +86,10 @@ file that was distributed with this source code.
                     <script src="{{ asset(javascript.path, javascript.package_name) }}"></script>
                 {% endfor %}
             {% endblock %}
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3e1a3ec1d (Supprime l'ancien support de canonicalize_locale_for_moment() pour la prochaine version majeure)
             {# localize select2 #}
             {% if sonata_config.getOption('use_select2') %}
                 {% set localeForSelect2 = canonicalize_locale_for_select2() %}
