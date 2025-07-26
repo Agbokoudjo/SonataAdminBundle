@@ -195,14 +195,6 @@ file that was distributed with this source code.
                                     {% block sonata_top_nav_menu %}
                                         <div class="navbar-custom-menu">
                                             <ul class="navbar-nav ms-auto">
-                                                {# Le bouton qui active/désactive la barre de recherche #}
-                                                {% if sonata_config.getOption('search') %}
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                                                            <i class="bi bi-search"></i>
-                                                        </a>
-                                                    </li>
-                                                {% endif %}
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#" data-lte-toggle="fullscreen">
                                                         <i data-lte-icon="maximize" class="bi bi-arrows-fullscreen"></i>
@@ -302,7 +294,7 @@ file that was distributed with this source code.
                     </aside>
                 {% endblock sonata_left_side %} {# endblock sonata_left_side #}
                 {% block sonata_right_main %}
-                     <main class="app-main shadow content-wrapper" id="app-main">
+                     <main class="app-main content-wrapper" id="app-main">
                         {% block sonata_page_content %}
                             <div class="app-content-header content-header">
                                 {% block sonata_page_content_header %}
@@ -408,7 +400,7 @@ file that was distributed with this source code.
                 {% endblock %} {# endblock sonata_right_main #}
              {% endblock %} {# endblock sonata_wrapper #}
              {% block sonata_footer %}
-                <footer class="app-footer shadow text-center small text-muted">
+                <footer class="app-footer text-center small text-muted">
                      Updated by ❤️ par AGBOKOUDJO Franck — 
                      <a href="https://www.linkedin.com/in/internationales-web-apps-services-120520193/" target="_blank" class="text-decoration-none">LinkedIn</a> |
                      <a href="https://github.com/Agbokoudjo/" target="_blank" class="text-decoration-none">GitHub</a> |
