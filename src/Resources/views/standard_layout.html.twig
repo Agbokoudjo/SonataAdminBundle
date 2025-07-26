@@ -239,7 +239,7 @@ file that was distributed with this source code.
                                                       method="GET" 
                                                       role="search">
                                                     <div class="input-group">
-                                                        <input type="text" 
+                                                        <input type="search" 
                                                                name="q" 
                                                                value="{{ app.request.get('q') }}" 
                                                                class="form-control form-control-navbar" 
@@ -249,7 +249,8 @@ file that was distributed with this source code.
                                                             <button class="btn btn-navbar" type="submit">
                                                                 <i class="bi bi-search"></i>
                                                             </button>
-                                                            <button class="btn btn-navbar" type="button" data-widget="navbar-search">
+                                                            <button class="btn btn-navbar" type="reset"
+                                                                    data-widget="navbar-search">
                                                                 <i class="bi bi-x-lg"></i>
                                                             </button>
                                                         </div>
