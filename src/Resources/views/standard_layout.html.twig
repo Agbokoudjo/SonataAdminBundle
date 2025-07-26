@@ -237,6 +237,7 @@ file that was distributed with this source code.
                                                 <form class="d-flex navbar-search" 
                                                       action="{{ path('sonata_admin_search') }}" 
                                                       method="GET" 
+                                                      id="navbar-search"
                                                       role="search">
                                                     <div class="input-group">
                                                         <input type="search" 
@@ -250,7 +251,9 @@ file that was distributed with this source code.
                                                                 <i class="bi bi-search"></i>
                                                             </button>
                                                             <button class="btn btn-navbar" type="reset"
-                                                                    data-widget="navbar-search">
+                                                                    data-widget="navbar-search"
+                                                                    form="navbar-search"
+                                                                    >
                                                                 <i class="bi bi-x-lg"></i>
                                                             </button>
                                                         </div>
