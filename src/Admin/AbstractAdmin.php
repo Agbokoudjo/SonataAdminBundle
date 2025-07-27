@@ -1577,8 +1577,7 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
         if ($modelManager instanceof ProxyResolverInterface) {
             $class = $modelManager->getRealClass($object);
         } else {
-            // NEXT_MAJOR: Change to `\get_class($object)`
-            $class = BCHelper::getClass($object);
+            $class = \get_class($object);
         }
 
         return \sprintf('%s:%s', $class, spl_object_hash($object));
