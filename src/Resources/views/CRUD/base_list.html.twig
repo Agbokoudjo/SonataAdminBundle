@@ -272,7 +272,7 @@ file that was distributed with this source code.
                                 {% if filter.label is not same as(false) %}
                                     {% if filter.translationDomain is same as(false) %}
                                         {{ filter.label }}
-                                    {% else filter.labelTranslationParameters is defined %}
+                                    {% elseif filter.labelTranslationParameters is defined %}
                                         {{ filter.label|trans(filter.labelTranslationParameters, filter.translationDomain ?? admin.translationDomain) }}
                                     {% endif %}
                                 {% endif %}
