@@ -61,7 +61,7 @@ file that was distributed with this source code.
                                             </th>
                                         {% elseif field_description.name == constant('Sonata\\AdminBundle\\Datagrid\\ListMapper::NAME_SELECT') %}
                                             <th class="sonata-ba-list-field-header sonata-ba-list-field-header-select"></th>
-                                        {% if field_description.getOption('ajax_hidden') == true and app.request.isXmlHttpRequest %}
+                                        {% elseif field_description.getOption('ajax_hidden') == true and app.request.isXmlHttpRequest %}
                                             {# Disable fields with 'ajax_hidden' option set to true #}
                                         {% else %}
                                             {% set sortable = false %}
