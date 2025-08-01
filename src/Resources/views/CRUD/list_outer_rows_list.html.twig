@@ -10,7 +10,7 @@ file that was distributed with this source code.
 #}
 
 {% for object in admin.datagrid.results %}
-    <tr>
+    <tr class="sonata-ba-list-field-row {% if loop.index is odd %}odd{% else %}even{% endif %}" role="row">
         {% include get_admin_template('inner_list_row', admin.code) %}
     </tr>
 {% endfor %}
