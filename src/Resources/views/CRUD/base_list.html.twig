@@ -42,11 +42,10 @@ file that was distributed with this source code.
         {% endif %}
 
         {# Add a margin if no pager to prevent dropdown cropping on window #}
-        <div class="box box-primary"{% if admin.datagrid.pager.lastPage == 1 %} style="margin-bottom: 100px;"{% endif %}>
-            <div class="box-body{% if datagrid_has_results %} table-responsive no-padding{% endif %}">
+        <div class="box box-primary card"{% if admin.datagrid.pager.lastPage == 1 %} style="margin-bottom: 100px;"{% endif %}>
+            <div class="card-header"><h3 class="card-title"> {% block list_header %}{% endblock %}</h3></div>
+            <div class="box-body card-body {% if datagrid_has_results %} table-responsive no-padding{% endif %}">
                 {{ sonata_block_render_event('sonata.admin.list.table.top', { 'admin': admin }) }}
-
-                {% block list_header %}{% endblock %}
 
                 {% if datagrid_has_results %}
                     {% block table %}
@@ -140,7 +139,7 @@ file that was distributed with this source code.
             </div>
             {% block list_footer %}
                 {% if datagrid_has_results %}
-                    <div class="box-footer">
+                    <div class="box-footer card-footer clearfix">
                         <div class="form-inline clearfix">
                             {% if not app.request.isXmlHttpRequest %}
                                 <div class="pull-left">
