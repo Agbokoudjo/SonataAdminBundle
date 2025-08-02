@@ -262,7 +262,7 @@ file that was distributed with this source code.
                     <b class="caret"></b>
                 </a>
 
-                <ul class="dropdown-menu dropdown-menu-scrollable" role="menu">
+                <ul class="dropdown-menu dropdown-menu-scrollable dropdown-menu-end" role="menu">
                     {% for filter in displayableFilters %}
                         {% set filterDisplayed = filter.isActive() or filter.showFilter is same as (true) %}
                         <li>
