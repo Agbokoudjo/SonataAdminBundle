@@ -68,12 +68,16 @@ file that was distributed with this source code.
             }|json_encode()|raw }}'
             >
         {% endblock %}
+<<<<<<< HEAD
 
         {% block stylesheets %}
             {% for stylesheet in sonata_config.getOption('stylesheets', []) %}
                 <link rel="stylesheet" href="{{ asset(stylesheet.path, stylesheet.package_name) }}">
             {% endfor %}
             {% block stylesheets_font_policies %}
+=======
+        {% block stylesheets_font_policies %}
+>>>>>>> 66eb6550c (Update Sonata Admin assets and Script)
                  <link rel="preconnect" href="https://fonts.googleapis.com">
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                 <link rel="preload" 
@@ -81,6 +85,11 @@ file that was distributed with this source code.
                       onload="this.onload=null;this.rel='stylesheet'">
                
             {% endblock %}
+        {% block stylesheets %}
+            {% for stylesheet in sonata_config.getOption('stylesheets', []) %}
+                <link rel="stylesheet" href="{{ asset(stylesheet, 'sonata_admin') }}">
+            {% endfor %}
+            
             <link
                 rel="stylesheet"
                 href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
@@ -132,7 +141,57 @@ file that was distributed with this source code.
                 {% endif %}
             {% endif %}
         {% endblock %}
+        {% block javascript_inline %}
+            <script
+                src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
+                crossorigin="anonymous" defer>
+            </script>
+            <script
+                src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+                crossorigin="anonymous" defer>
+            </script>
+            <script>
+                const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
+                const Default = {
+                    scrollbarTheme: 'os-theme-light',
+                    scrollbarAutoHide: 'leave',
+                    scrollbarClickScroll: true,
+                };
+                document.addEventListener('DOMContentLoaded', function () {
+                    const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
 
+                    // Disable OverlayScrollbars on mobile devices to prevent touch interference
+                    const isMobile = window.innerWidth <= 992;
+
+                    if (
+                        sidebarWrapper &&
+                        OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined &&
+                        !isMobile
+                        ) {
+                            OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
+                                scrollbars: {
+                                theme: Default.scrollbarTheme,
+                                autoHide: Default.scrollbarAutoHide,
+                                clickScroll: Default.scrollbarClickScroll,
+                                },
+                        });
+                        }
+                });
+            </script>
+            {% if sonata_config.getOption('use_bootlint') %}
+                {% block bootlint %}
+                    {# Bootlint - https://github.com/twbs/bootlint#in-the-browser #}
+                    <script type="text/javascript">
+                        javascript:(function(){
+                            var s=document.createElement("script");
+                            s.onload=function(){
+                                bootlint.showLintReportForCurrentDocument([], {hasProblems: false, problemFree: false});};
+                                s.src="https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js";
+                                document.body.appendChild(s)})();
+                    </script>
+                {% endblock %}
+            {% endif %}
+        {% endblock %} {# endblock javascript_inline  #}
          <title>
             {% block sonata_head_title %}
                 {{ 'Admin'|trans({}, 'SonataAdminBundle') }}
@@ -424,56 +483,6 @@ file that was distributed with this source code.
                 </footer>
             {% endblock %} {# endblock sonata_footer #}
         </div>
-        {% block javascript_inline %}
-            <script
-                src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
-                crossorigin="anonymous">
-            </script>
-            <script
-                src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-                crossorigin="anonymous">
-            </script>
-            <script>
-                const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
-                const Default = {
-                    scrollbarTheme: 'os-theme-light',
-                    scrollbarAutoHide: 'leave',
-                    scrollbarClickScroll: true,
-                };
-                document.addEventListener('DOMContentLoaded', function () {
-                    const sidebarWrapper = document.querySelector(SELECTOR_SIDEBAR_WRAPPER);
-
-                    // Disable OverlayScrollbars on mobile devices to prevent touch interference
-                    const isMobile = window.innerWidth <= 992;
-
-                    if (
-                        sidebarWrapper &&
-                        OverlayScrollbarsGlobal?.OverlayScrollbars !== undefined &&
-                        !isMobile
-                        ) {
-                            OverlayScrollbarsGlobal.OverlayScrollbars(sidebarWrapper, {
-                                scrollbars: {
-                                theme: Default.scrollbarTheme,
-                                autoHide: Default.scrollbarAutoHide,
-                                clickScroll: Default.scrollbarClickScroll,
-                                },
-                        });
-                        }
-                });
-            </script>
-            {% if sonata_config.getOption('use_bootlint') %}
-                {% block bootlint %}
-                    {# Bootlint - https://github.com/twbs/bootlint#in-the-browser #}
-                    <script type="text/javascript">
-                        javascript:(function(){
-                            var s=document.createElement("script");
-                            s.onload=function(){
-                                bootlint.showLintReportForCurrentDocument([], {hasProblems: false, problemFree: false});};
-                                s.src="https://maxcdn.bootstrapcdn.com/bootlint/latest/bootlint.min.js";
-                                document.body.appendChild(s)})();
-                    </script>
-                {% endblock %}
-            {% endif %}
-        {% endblock %} {# endblock javascript_inline  #}
+        
     </body>
 </html>
