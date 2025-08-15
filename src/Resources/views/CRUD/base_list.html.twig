@@ -287,7 +287,6 @@ file that was distributed with this source code.
 {% block list_filters %}
     {% if admin.datagrid.filters %}
         {% form_theme form get_admin_template('filter', admin.code) %}
-
         <div class="col-xs-12 col-md-12 sonata-filters-box mb-3"
              id="filter-container-{{ admin.uniqid() }}" {{ stimulus_controller('sonata-filter', { 'defaultValues': admin.defaultFilterParameters|json_encode }, {}, { 'sonata-filter-list': '#filter-list-' ~ admin.uniqid() }) }} {% if not admin.datagrid.hasDisplayableFilters %}hidden{% endif %}>
             <div class="box box-primary card">
