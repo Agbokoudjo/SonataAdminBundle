@@ -288,10 +288,11 @@ file that was distributed with this source code.
     {% if admin.datagrid.filters %}
         {% form_theme form get_admin_template('filter', admin.code) %}
 
-        <div class="col-xs-12 col-md-12 sonata-filters-box"
+        <div class="col-xs-12 col-md-12 sonata-filters-box mb-3"
              id="filter-container-{{ admin.uniqid() }}" {{ stimulus_controller('sonata-filter', { 'defaultValues': admin.defaultFilterParameters|json_encode }, {}, { 'sonata-filter-list': '#filter-list-' ~ admin.uniqid() }) }} {% if not admin.datagrid.hasDisplayableFilters %}hidden{% endif %}>
-            <div class="box box-primary" >
-                <div class="box-body">
+            <div class="box box-primary card">
+            <div class="card-header"> <p class="filter-label card-title">{{ 'filter_label'|trans({}, 'SonataAdminBundle') }}</p></div>
+                <div class="box-body card-body">
                     <form
                         class="sonata-filter-form form-horizontal {{ admin.isChild and 1 == admin.datagrid.filters|length ? 'hide' : '' }}"
                         action="{{ admin.generateUrl(action|default('list')) }}"
@@ -300,41 +301,47 @@ file that was distributed with this source code.
                         {{ stimulus_target('sonata-filter', 'form') }}
                         {{ stimulus_action('sonata-filter', 'prepareSubmit', 'submit') }}>
                         {{ form_errors(form) }}
-
                         <div class="row">
                             <div class="col-sm-9">
                                 {% set withAdvancedFilter = false %}
                                 {% for filter in admin.datagrid.filters %}
                                     {% set filterDisplayed = filter.isActive() or filter.showFilter is same as (true) %}
                                     {% set filterCanBeDisplayed = filter.option('show_filter') is not same as(false) %}
-                                    <div class="form-group {% block sonata_list_filter_group_class %}{% endblock %}" id="filter-{{ admin.uniqid }}-{{ filter.name }}" {{ stimulus_target('sonata-filter', 'group') }} {% if not filterDisplayed %}hidden{% endif %}>
-                                        {% if filter.label is not same as(false) %}
-                                            <label for="{{ form[filter.formName].children['value'].vars.id }}" class="col-sm-3 control-label">
+                                    <div class="mb-3 form-group {% block sonata_list_filter_group_class %}{% endblock %}" id="filter-{{ admin.uniqid }}-{{ filter.name }}" {{ stimulus_target('sonata-filter', 'group') }} {% if not filterDisplayed %}hidden{% endif %}>
+                                     <div class="row d-flex flex-row justify-content-around">
+                                        {% set attr = form[filter.formName].children['type'].vars.attr|default({}) %}
+                                        <div class="col-sm-7">
+                                           {% set label_field = '' %}
+                                          {% if filter.label is not same as(false) %}
+                                            <label for="{{ form[filter.formName].children['value'].vars.id }}" class="form-label">
                                                 {% if filter.translationDomain is same as(false) %}
                                                     {{ filter.label }}
+                                                    {% set label_field = filter.label %}
                                                 {% else %}
-                                                    {{ filter.label|trans(filter.option('label_translation_parameters', {}), filter.translationDomain ?? admin.translationDomain) }}
+                                                    {% set  label_field = filter.label|trans(filter.option('label_translation_parameters', {}), filter.translationDomain ?? admin.translationDomain)  %}
+                                                    {{ label_field }}
                                                 {% endif %}
                                             </label>
                                         {% endif %}
-                                        {% set attr = form[filter.formName].children['type'].vars.attr|default({}) %}
-                                        <div class="col-sm-4 advanced-filter" {{ stimulus_target('sonata-filter', 'advanced') }} {% if not field_value(form[filter.formName].children['type']) %}hidden{% endif %}>
-                                            {{ form_widget(form[filter.formName].children['type'], {'attr':  attr}) }}
-                                        </div>
-
-                                        <div class="col-sm-4">
                                             {{ form_widget(form[filter.formName].children['value']) }}
                                         </div>
-
+                                        <div class="col-sm-4 advanced-filter" {{ stimulus_target('sonata-filter', 'advanced') }} {% if not field_value(form[filter.formName].children['type']) %}hidden{% endif %}>
+                                              <label  class="mb-2 label-filter form-label">
+                                                {{ 'btn_advanced_filters'|trans({}, 'SonataAdminBundle') }}
+                                                {{ label_field }}
+                                          </label>
+                                            {{ form_widget(form[filter.formName].children['type'], {'attr':  attr}) }}
+                                        </div>
                                         {% if filterCanBeDisplayed %}
                                             <div class="col-sm-1">
-                                                <label class="control-label">
+                                                <label class="control-label form-label">
                                                     <a href="#" class="sonata-ba-action" {{ stimulus_action('sonata-filter', 'hideFilter', 'click', { 'id': 'filter-' ~ admin.uniqid ~ '-' ~ filter.name }) }}>
                                                         <i class="fas fa-minus-circle" aria-hidden="true"></i>
                                                     </a>
                                                 </label>
                                             </div>
                                         {% endif %}
+                                        </div>
                                     </div>
                                     {% if filter.withAdvancedFilter %}
                                         {% set withAdvancedFilter = true %}
@@ -377,3 +384,4 @@ file that was distributed with this source code.
         </div>
     {% endif %}
 {% endblock %}
+

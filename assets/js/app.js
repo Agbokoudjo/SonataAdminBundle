@@ -10,7 +10,7 @@
 // Any SCSS/CSS you require will output into a single css file (app.css in this case)
 import '../scss/app.scss';
 import '@fortawesome/fontawesome-free/js/all.min';
-import 'bootstrap/dist/js/bootstrap.min'
+import * as bootstrap from 'bootstrap';
 // Require jQuery normally
 import $ from 'jquery';
 
@@ -31,6 +31,7 @@ import './admin';
 import './treeview';
 import './sidebar';
 import './base';
+import './turbo';
 import * as stimulus from '@hotwired/stimulus';
 
 import { sonataApplication } from './stimulus';
@@ -40,3 +41,5 @@ global.$ = $;
 global.jQuery = $;
 global.stimulus = stimulus;
 global.sonataApplication = sonataApplication;
+window.bootstrap = bootstrap;
+global.bootstrap = bootstrap;

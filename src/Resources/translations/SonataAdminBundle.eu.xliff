@@ -14,6 +14,10 @@
         <source>btn_batch</source>
         <target>OK</target>
       </trans-unit>
+      <trans-unit id="filter_label">
+        <source>filter_label</source>
+        <target>IRAGAZKIAREN ARABERAKO BILAKETA</target>
+      </trans-unit>
       <trans-unit id="btn_create">
         <source>btn_create</source>
         <target>Sortu</target>

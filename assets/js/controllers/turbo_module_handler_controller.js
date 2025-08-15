@@ -12,17 +12,21 @@
 
 // turbo_module_handler_controller.js
 import { Controller } from '@hotwired/stimulus';
-import turboModuleHandler from '../turbo';
+import __turboModuleHandler_instance from '../turbo';
 
+/**
+ * Handles same-page anchor clicks without triggering Turbo page reloads.
+ * Prevents unnecessary reloads for links like "#section" by manually updating the URL.
+ */
 export default class extends Controller {
     connect() {
         // Attach click listener globally
-        document.addEventListener('turbo:click', this.handleTurboClick);
+        document.addEventListener('turbo:click', this.handleTurboClick.bind(this));
     }
 
     disconnect() {
         // Clean up listener when the controller disconnects
-        document.removeEventListener('turbo:click', this.handleTurboClick);
+        document.removeEventListener('turbo:click', this.handleTurboClick.bind(this));
     }
 
     /**
@@ -30,7 +34,7 @@ export default class extends Controller {
      * @param {MouseEvent} e
      */
     handleTurboClick = (e) => {
-        turboModuleHandler.anchorElementHandler(e);
+       __turboModuleHandler_instance.anchorElementHandler(e);
     }
 }
 

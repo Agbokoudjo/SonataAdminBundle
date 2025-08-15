@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="sonata_administration">
         <source>sonata_administration</source>
-        <target>Administration</target>
+        <target>Administration</target> 
       </trans-unit>
       <trans-unit id="action_delete">
         <source>action_delete</source>
@@ -37,6 +37,10 @@
       <trans-unit id="btn_advanced_filters">
         <source>btn_advanced_filters</source>
         <target>Filtres avancés</target>
+      </trans-unit>
+      <trans-unit id="filter_label">
+        <source>filter_label</source>
+        <target>RECHERCHE PAR FILTRE</target> 
       </trans-unit>
       <trans-unit id="btn_update">
         <source>btn_update</source>

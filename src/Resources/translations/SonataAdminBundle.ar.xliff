@@ -462,6 +462,10 @@
         <source>link_filters</source>
         <target>مرشحات</target>
       </trans-unit>
+      <trans-unit id="filter_label">
+        <source>filter_label</source>
+        <target>البحث عن طريق التصفية</target>
+      </trans-unit>
       <trans-unit id="stats_view_more">
         <source>stats_view_more</source>
         <target>عرض المزيد</target>

@@ -16,3 +16,30 @@
   text-align: center;
   width: 100%;
 }
+
+/* Règle 1: Conteneur principal */
+
+.sonata-filters-box .box-body {
+    background-color: #F7F9FC; /* Gris très clair */
+    padding-top:2rem;
+}
+
+/* Règle 2: Titre de la zone de filtre */
+.sonata-filters-box .filter-label.card-title {
+   color: #fff;/*#34495E;  Bleu sombre */
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+/* Règle 3: Libellés des champs (Téléphone, Email, etc.) */
+.sonata-filters-box label {
+    color: #555555; /* Gris anthracite */
+    font-weight: 800;
+}
+
+/* Règle 4: Bordures des champs de saisie */
+/* Cette règle rend les champs de saisie plus discrets et modernes */
+.sonata-filters-box .form-control {
+    border: 1px solid #BCC4D1; /* Bordure gris-bleu */
+}

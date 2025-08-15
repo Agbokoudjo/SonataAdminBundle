@@ -34,6 +34,10 @@
         <source>btn_filter</source>
         <target>Filter</target>
       </trans-unit>
+      <trans-unit id="filter_label">
+        <source>filter_label</source>
+        <target>ZOEKEN OP FILTER</target>
+      </trans-unit>
       <trans-unit id="btn_advanced_filters">
         <source>btn_advanced_filters</source>
         <target>Geavanceerde filters</target>
