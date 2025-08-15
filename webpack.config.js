@@ -8,12 +8,14 @@
  */
 
 const Encore = require('@symfony/webpack-encore');
-const StyleLintPlugin = require('stylelint-webpack-plugin');
 
-Encore.setOutputPath('./src/Resources/public')
-  .setPublicPath('.')
-  .setManifestKeyPrefix('bundles/sonataadmin')
+Encore
+    // Dossier où les assets compilés seront stockés
+    .setOutputPath('./src/Resources/public')
+    .setPublicPath('/bundles/sonataadmin') // pour Sonata Admin, souvent './' ou '/bundles/sonataadmin'
+    .setManifestKeyPrefix('bundles/sonataadmin')
 
+<<<<<<< HEAD
   .cleanupOutputBeforeBuild()
   .enableSassLoader()
   .enablePostCssLoader()
@@ -21,51 +23,48 @@ Encore.setOutputPath('./src/Resources/public')
   .enableSourceMaps(false)
   .autoProvidejQuery()
   .disableSingleRuntimeChunk()
+=======
+    // Nettoyer le dossier de build avant compilation
+    .cleanupOutputBeforeBuild()
+    .disableSingleRuntimeChunk()
+>>>>>>> 926460c9c (Update Sonata Admin assets and Webpack Encore build)
 
-  .enableStimulusBridge('./assets/js/controllers.json')
+    // Sass / PostCSS minimal
+    .enableSassLoader()
+    .enablePostCssLoader()
+    // Versioning / Source maps simplifiés
+    .enableVersioning(false)
+    .enableSourceMaps(false)
 
-  .configureCssMinimizerPlugin((options) => {
-    options.minimizerOptions = {
-      preset: ['default', { discardComments: { removeAll: true } }],
-    };
-  })
+    // Fournir jQuery globalement (AdminLTE en dépend)
+    .autoProvidejQuery()
 
-  .configureImageRule({
-    filename: 'images/[name][ext]',
-  })
+    // Stimulus minimal
+    .enableStimulusBridge('./assets/js/controllers.json')
 
-  .configureFontRule({
-    filename: 'fonts/[name][ext]',
-  })
-
-  .addPlugin(
-    new StyleLintPlugin({
-      context: 'assets/scss',
-      emitWarning: true,
+    // Minimisation CSS / JS simplifiée
+    .configureCssMinimizerPlugin((options) => {
+        options.minimizerOptions = {
+            preset: ['default', { discardComments: { removeAll: true } }],
+        };
     })
-  )
+    .configureTerserPlugin((options) => {
+        options.terserOptions = { output: { comments: false } };
+        options.extractComments = false;
+    })
 
-  .configureTerserPlugin((options) => {
-    options.terserOptions = {
-      output: { comments: false },
-    };
-    options.extractComments = false;
-  })
+    // Règles pour images / fonts
+    .configureImageRule({ filename: 'images/[name][ext]' })
+    .configureFontRule({ filename: 'fonts/[name][ext]' })
 
-  .copyFiles([
-    { from: './assets/images/', pattern: /\.(png|gif)$/, to: 'images/[name].[ext]' },
-    {
-      from: './node_modules/admin-lte/dist/css/skins/',
-      pattern: /skin-.*\.min.css/,
-      to: 'admin-lte-skins/[name].[ext]',
-    },
-    {
-      from: './node_modules/select2/dist/js/i18n/',
-      pattern: /\.js/,
-      to: 'select2-locale/[name].[ext]',
-    },
-  ])
+    // Copier uniquement les fichiers nécessaires
+    .copyFiles([
+        { from: './assets/images/', pattern: /\.(png|gif)$/, to: 'images/[name].[ext]' },
+        { from: './node_modules/select2/dist/js/i18n/', pattern: /\.js/, to: 'select2-locale/[name].[ext]' },
+    ])
 
-  .addEntry('app', './assets/js/app.js');
+    // Entrée principale
+    .addEntry('app', './assets/js/app.js');
 
+// Exporter la config finale
 module.exports = Encore.getWebpackConfig();

@@ -73,6 +73,14 @@ file that was distributed with this source code.
             {% for stylesheet in sonata_config.getOption('stylesheets', []) %}
                 <link rel="stylesheet" href="{{ asset(stylesheet.path, stylesheet.package_name) }}">
             {% endfor %}
+            {% block stylesheets_font_policies %}
+                 <link rel="preconnect" href="https://fonts.googleapis.com">
+                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+                <link rel="preload" 
+                      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,100..900&display=swap" as="style" 
+                      onload="this.onload=null;this.rel='stylesheet'">
+               
+            {% endblock %}
             <link
                 rel="stylesheet"
                 href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"

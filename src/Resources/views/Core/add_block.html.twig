@@ -24,7 +24,7 @@
                 {% else %}
                     </ul>
                 {% endif %}
-                <ul class="dropdown-menu{% if column_count > 1 %} col-md-{{ (12/column_count)|round }}{% endif %}">
+                <ul class="dropdown-menu dropdown-menu-column_count  {% if column_count > 1 %} col-md-{{ (12/column_count)|round }}{% endif %}">
             {% endif %}
             {% if loop.index0 % items_per_column != 0 %}
                 <li role="presentation" class="divider"></li>

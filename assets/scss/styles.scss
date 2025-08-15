@@ -13,268 +13,142 @@
  */
 
 html {
-  font-size: initial !important;
-  min-height: 100%;
-  position: relative;
-}
-
-footer {
-  background-color: #333;
-  bottom: 0;
-  height: 20px;
-  position: absolute;
-  width: 100%;
-
-  p {
-    margin: 0;
+    font-size: initial !important;
+    min-height: 100%;
+    position: relative;
   }
-
-  a {
-    color: #f6f6f6;
-  }
+/* Basic body styling for consistent font and background */
+.body{
+    font-size:1rem;
+    font-family: 'Fraunces','Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width:100%;
+    min-width:100%;
+    max-width:100%;
+    color: #34495E; /* Default text color for the application */
+    background-color: #F8F9FA; /* A very light background for the overall app outside main content */
 }
-
-body{
-  font-size:1rem;
-  font-family: Arial, serif;
-  width:100%;
-  min-width:100%;
-  max-width:100%;
+.logo{
+    transition: background-color 0.3s, border-bottom 0.3s;
+}
+.logo a{
+    text-decoration: none;
 }
 .logo img {
-  display: inline;
-  max-height: 100%;
-  max-width: 60px;
-  padding-bottom: 4px;
-}
+    display: inline;
+    width: 50px;
+    height: 50px;
+    padding-bottom: 4px;
+  }
 .logo  span {
-  display: inline-block;
-  line-height: 1;
-  vertical-align: middle;
-  width: 200px;
-}
-.logo img {
-  width: 140px;
-}
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    width: 200px;
+    font-weight: bolder;
+  }
+  .logo span.brand-text.name-site{
+    color:#ffff;
+  }
+.logo img + span {
+    width: 140px;
+  }
 
 /*sidebar*/
-#app-sidebar{
-  background-color:  #00427E;
-  overflow-y:auto ;
-  color:#ffff;
+/* ======================================= */
+/* GLOBAL STYLES & LAYOUT BASE             */
+/* ======================================= */
+
+/* ======================================= */
+/* SIDEBAR (LATERAL MENU) STYLES           */
+/* ======================================= */
+#app-sidebar {
+  /* Main background with your desired blue gradient */
+  background: linear-gradient(
+      135deg,
+      rgba(0, 66, 126, 0.9) 0%, /* Your principal blue with 90% opacity */
+      rgba(0, 51, 102, 0.95) 50%, /* Darker shade with 95% opacity */
+      rgba(0, 33, 66, 0.98) 100% /* Even darker shade with 98% opacity */
+  );
+  border-right: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border to define sidebar edge */
+  color: #FFFFFF; /* Default text color for general sidebar elements */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05); /* Soft shadow for depth */
+  height: 100%;
 }
 
-
-body > .header .logo {
-  font-family: Arial, sans-serif;
-  transition: background-color 0.3s, border-bottom 0.3s;
-}
-
-.main-header {
-  height: 50px;
-}
-
-.open > .dropdown-menu {
-  animation-duration: 0.3s;
-}
-
-.dropdown-menu-scrollable {
-  max-height: 75vh;
+/* Ensure overflow is handled for scrollable content */
+.app-sidebar #sidebar-wrapper {
   overflow-y: auto;
 }
 
-/* Buttons */
-.btn.btn-outline {
-  background-color: transparent;
-  color: inherit;
-  transition: all 0.5s;
+/* Specific styling for navigation items (AdminLTE .nav-item > .nav-link) */
+#app-sidebar .nav-item > .nav-link {
+  color: rgba(255, 255, 255, 0.7); /* Light gray for standard menu text */
+  padding: 10px 15px; /* Adjust padding for better spacing */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition effects */
+  display: flex; /* Use flexbox for icon and text alignment */
+  align-items: center;
 }
 
-.btn.btn-primary.btn-outline:hover,
-.btn.btn-success.btn-outline:hover,
-.btn.btn-info.btn-outline:hover,
-.btn.btn-warning.btn-outline:hover,
-.btn.btn-danger.btn-outline:hover {
-  color: #fff;
+/* Icons within sidebar menu items */
+#app-sidebar .nav-item > .nav-link i {
+  color: rgba(255, 255, 255, 0.85); /* Slightly brighter icons */
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 1.1em; /* Adjust icon size if needed */
 }
 
-/* navigation */
-.navbar-static-side li {
-  border-bottom: 1px solid #e7e7e7;
+/* Hover state for sidebar menu items */
+#app-sidebar .nav-item > .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.08); /* Subtle light overlay on hover */
+  color: #FFFFFF; /* Pure white text on hover */
 }
 
-
-
-.navbar-text .navbar-link {
-  padding: 0 10px;
+/* Active state for sidebar menu items (current page) */
+#app-sidebar .nav-item > .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.15); /* More pronounced background for active item */
+  color: #FFFFFF; /* Pure white text for active item */
+  border-left: 3px solid #00A3FF; /* Distinct blue border on the left for active item */
+  font-weight: 600; /* Make active item text bolder */
 }
 
-.content-header {
-  .navbar {
-    margin-bottom: 0;
-  }
+/* Adjust font size for sidebar items if desired */
+/* #app-sidebar .nav-item > .nav-link { font-size: 0.95rem; } */
+
+
+/* ======================================= */
+/* HEADER STYLES                           */
+/* ======================================= */
+#app-header {
+  background-color: #ECF0F1; /* Light Neutral Gray */
+  color: #2C3E50; /* Deep Night Blue for main header text/icons */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Very light shadow for subtle depth */
+  border-bottom: 1px solid #E0E0E0; /* Soft bottom border for separation */
+  padding: 15px 20px; /* Ensure good internal spacing */
+  height: 60px;
+  min-width: 100%;
 }
 
-.right-side > .content-header {
-  padding-bottom: 0;
+/* Specific styles for header navigation links/icons (e.g., user dropdown, notifications) */
+#app-header .navbar-nav .nav-link {
+  color: #34495E; /* Slightly softer gray-blue for secondary header elements */
+  transition: color 0.3s ease; /* Smooth transition for hover */
 }
 
-.nav-second-level li {
-  border-bottom: none !important;
-
-  a {
-    padding-left: 37px;
-  }
+#app-header .navbar-nav .nav-link:hover {
+  color: #00A3FF; /* A touch of light blue on hover for interactive elements */
 }
-
-.nav-third-level li {
-  border-bottom: none !important;
-
-  a {
-    padding-left: 52px;
-  }
-}
-
-div {
-  &.mosaic-box {
-    border-radius: 3px;
-    padding: 2px;
-  }
-
-  &.mosaic-inner-box-hover {
-    background-color: rgb(255 255 255 / 80%);
-    border-radius: 4px 4px 0 0;
-    inset: 0;
-    padding: 5px 10px;
-    position: absolute;
-    transition: 0.25s opacity;
-  }
-
-  &.mosaic-inner-box {
-    border-bottom: none;
-    height: 100px;
-    overflow: hidden;
-    position: relative;
-
-    > div.mosaic-inner-box-hover {
-      opacity: 0;
-    }
-
-    img {
-      border-radius: 4px 4px 0 0;
-      height: auto;
-      width: 100%;
-    }
-
-    &:hover > div.mosaic-inner-box-hover {
-      opacity: 1;
-    }
-  }
-
-  &.mosaic-box-outter {
-    background-color: #fff;
-    background-size: 100% auto;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-
-  &.mosaic-inner-text {
-    background: white;
-    border-radius: 0 0 5px 5px;
-    border-top: none;
-    overflow: hidden;
-    padding: 3px;
-    position: relative;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    z-index: 2;
-  }
-}
-
-.navbar-top-links li {
-  display: inline-block;
-
-  a,
-  span {
-    min-height: 50px;
-    padding: 15px;
-  }
-}
-
-.dropdown-add .dropdown-menu > li > a {
-  overflow: hidden;
-  white-space: normal;
-}
-
-.navbar-top-links {
-  > p,
-  > ul {
-    float: right;
-  }
-
-  .dropdown-menu {
-    li {
-      display: block;
-
-      &:last-child {
-        margin-right: 0;
-      }
-
-      a {
-        min-height: 0;
-        padding: 3px 20px;
-
-        div {
-          white-space: normal;
-        }
-      }
-    }
-  }
-
-  .dropdown-messages,
-  .dropdown-tasks,
-  .dropdown-alerts {
-    min-width: 0;
-    width: 310px;
-  }
-
-  .dropdown-messages {
-    margin-left: 5px;
-  }
-
-  .dropdown-tasks {
-    margin-left: -59px;
-  }
-
-  .dropdown-alerts {
-    margin-left: -123px;
-  }
-
-  .dropdown-user {
-    left: auto;
-    right: 0;
-  }
-}
-
 /* breadcrumb */
 .sonata-bc .breadcrumb {
   background: inherit;
   float: left;
   margin: 0;
   padding: 0;
-
-  li a {
-    display: inline-block;
-  }
 }
-
-.navbar-top-links .dropdown-menu li a:hover {
-  text-decoration: none;
+.sonata-bc .breadcrumb li a {
+  display: inline-block;
 }
-
 /* MEGA MENU STYLE
 ********************************/
-.dropdown-menu .dropdown-menu {
+#app-header .dropdown-menu .dropdown-menu {
   border: none !important;
   box-shadow: none !important;
   display: block !important;
@@ -282,296 +156,391 @@ div {
   position: static !important;
 }
 
-.dropdown-menu.multi-column .dropdown-menu {
+#app-header .dropdown-menu.multi-column .dropdown-menu {
   min-width: 100px;
 }
+/* ======================================= */
+/* Styles pour le menu déroulant "Ajouter" */
+/* ======================================= */
 
-/* top right */
-.navbar-static-top {
-  margin-bottom: 0;
+/* Cibler le conteneur principal du menu déroulant */
+#app-header .dropdown-menu.multi-column.dropdown-add {
+  /* Retirer la largeur fixe qui cause le problème */
+  width: auto !important; 
+  
+  /* Définir une largeur minimale si nécessaire, ou une largeur maximale */
+  min-width: 250px;
+  max-width: 350px;
+
+  /* Ajouter des ombres et des bords pour un design plus propre */
+  border: 1px solid #D3DCE6;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  padding: 8px 0;
 }
 
-.skin-black .navbar .breadcrumb > li > a:hover {
-  background: #f5f5f5;
-  color: #444;
+/* Style des en-têtes de groupe (par exemple, "Gestion des Contacts") */
+#app-header .dropdown-menu .dropdown-header {
+  font-weight: 600;
+  color: #2C3E50;
+  padding: 8px 16px;
+  white-space: nowrap;
 }
 
-.skin-black .navbar .dropdown-menu > li > a:hover {
-  background-color: #f5f5f5;
-}
-
-/* sidebar menu styles */
-.sidebar-search {
-  padding: 15px;
-}
-
-.sidebar-menu li.keep-open > .treeview-menu {
-  display: block !important;
-  height: auto !important;
-}
-
-.arrow {
-  float: right;
-}
-
-.fa.arrow::before {
-  content: '\f104';
-}
-
-.active > a > .fa.arrow::before {
-  content: '\f107';
-}
-
-@media (width >= 768px) {
-  .navbar-static-side {
-    position: absolute;
-    width: 250px;
-    z-index: 1;
-  }
-
-  .navbar-top-links {
-    .dropdown-messages,
-    .dropdown-tasks,
-    .dropdown-alerts {
-      margin-left: auto;
-    }
-  }
-}
-
-/* Admin table */
-table.sonata-ba-list {
-  font-size: 14px;
-
-  img {
-    height: auto;
-    max-width: 100%;
-  }
-
-  td {
-    overflow: auto;
-  }
-}
-
-td.sonata-ba-list-label {
-  color: #565656;
-  font-weight: bold;
-  text-align: right;
-  vertical-align: middle !important;
-}
-
-/* side filter */
-.box .box-header h4.box-title.filter_legend {
-  cursor: pointer;
-  padding-left: 20px;
-  position: relative;
-}
-
-h4.filter_legend {
-  &::before {
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid black;
-    content: '';
-    display: block;
-    height: 0;
-    left: 2px;
-    margin-left: 5px;
-    margin-top: -2px;
-    position: absolute;
-    top: 50%;
-    width: 0;
-  }
-
-  &.active {
-    color: #000;
-    font-weight: bold;
-  }
-}
-
-tr.filter.active * {
-  color: #000;
-  font-weight: bold;
-}
-
-form.sonata-filter-form.form-stacked {
-  padding-left: 0;
-}
-
-body.fixed .sonata-list-table {
-  margin-bottom: 5px;
-  margin-left: 15px;
-  margin-right: 15px;
-  position: relative;
-}
-
-.navbar-nav.navbar-right:last-child {
-  margin-right: 0;
-}
-
-/* Overrides */
-
-/* x-editable */
-td.sonata-ba-list-field {
-  .editable {
-    cursor: pointer;
-  }
-
-  .btn.editable {
-    border-bottom: solid 1px #bbb;
-  }
-
-  .editable-empty:not(.editable-open) {
-    display: none;
-  }
-}
-
-.sonata-ba-list tr:hover .editable-empty {
-  display: inline-block;
-}
-
-.editable-pre-wrapped {
-  white-space: normal;
-}
-
-.editable-container {
-  .prev::before {
-    content: '\2190 ';
-  }
-
-  .next::before {
-    content: '\2192 ';
-  }
-}
-
-/* bootstrap */
-.input-group-addon {
-  width: auto; /* See https://github.com/sonata-project/SonataAdminBundle/issues/2950 */
-}
-
-/**
- * Make checkbox / radio label consistant with other labels
- */
-.checkbox label,
-.radio label {
-  font-weight: 700;
-}
-
-/**
- * Undo Bootstrap styling for checkboxes and radio buttons when iCheck is in use.
- */
-body.sonata-icheck .checkbox label,
-body.sonata-icheck .radio label {
-  margin-left: 0;
-  padding-left: 0;
-}
-
-/**
- * The iCheck checkboxes & radios have 0 margin by default,
- * add some space for the label text.
- */
-.checkbox div[class^='icheckbox'],
-.checkbox-inline div[class^='icheckbox'],
-.radio div[class^='iradio'],
-.radio-inline div[class^='iradio'] {
-  margin-right: 5px;
-  margin-top: -3px;
-  position: relative;
-}
-
-.form-inline .checkbox div[class^='icheckbox'],
-.form-inline .checkbox-inline div[class^='icheckbox'],
-.form-inline .radio div[class^='iradio'],
-.form-inline .radio-inline div[class^='iradio'] {
-  margin-left: 0;
-  margin-right: 5px;
-  margin-top: -3px;
-  position: relative;
-}
-
-/* Hide Delete checkbox on sonata_type_collection tables */
-.sonata-ba-field-inline-table td > div.checkbox > label > .control-label__text {
-  border: 0;
-  clip: rect(0, 0, 0, 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-}
-
-/* select2 */
-.select2-choice,
-.select2-choices,
-.select2-drop {
-  border-radius: 0 !important;
-}
-
-/* Used for the mosaic view */
-td > div.row {
-  margin: 0;
+/* Style des éléments de liste (par exemple, "Message") */
+#app-header .dropdown-menu ul.dropdown-menu li {
   padding: 0;
 }
-
-.mosaic-inner-link {
-  vertical-align: middle;
-}
-
-.mosaic-box-label {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-
-div.mosaic-box.sonata-ba-list-row-selected {
-  > div.mosaic-inner-box {
-    border: 1px solid #333;
-    border-bottom: none;
-  }
-
-  > div.mosaic-inner-text {
-    border: 1px solid #333;
-    border-top: none;
-  }
-}
-
-.modal .mosaic-inner-text .icheckbox_square-blue {
-  display: none;
-}
-
-div.sonata-filters-box div.form-group {
-  div.form-group {
-    margin: 0;
-  }
-
-  span.input-group-addon {
-    font-size: 13px;
-    padding: 3px 10px;
-  }
-}
-
-.sonata-search-result-hide {
-  display: none;
-}
-
-.sonata-search-result-fade {
-  opacity: 0.6;
-}
-
-.sonata-search-result-show {
+#app-header .dropdown-menu ul.dropdown-menu a {
+  color: #34495E;
+  padding: 8px 16px;
   display: block;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  white-space: nowrap;
 }
 
-.sonata-toggle-filter {
-  i::before {
-    content: '\f0c8'; // fa-square
-  }
-
-  &.active i::before {
-    content: '\f14a'; // fa-check-square
-  }
+/* Survol des liens du menu */
+#app-header .dropdown-menu ul.dropdown-menu a:hover {
+  background-color: #F8F9FA;
+  color: #2C3E50;
 }
 
-[hidden] {
-  display: none !important;
+/* Ajuster les styles de Bootstrap pour les menus multi-colonnes */
+#app-header .dropdown-menu.multi-column .container-fluid .row {
+  margin: 0;
+}
+#app-header .dropdown-menu.multi-column .dropdown-menu-column_count {
+  padding: 0;
+}
+/* ======================================= */
+/* MAIN CONTENT AREA STYLES                */
+/* ======================================= */
+#app-main {
+  background-color: #FFFFFF; /* Pure White for the main content background */
+  color: #34495E; /* Dark Gray-Blue for general body text */
+  padding: 20px 25px; /* Add general padding for overall content area */
+  min-height: calc(100vh - 70px); /* Example: adjust min-height to push footer down if needed */
+  height: 100%;
+  min-width: 100%;
+}
+
+
+/* ======================================= */
+/* TABLE STYLES (within main content)      */
+/* ======================================= */
+
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #34495E; /* Gris-Bleu Foncé pour le texte du tableau */
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+/* Table header (thead) */
+.table thead th {
+  background-color: #F8F9FA; /* Fond très clair pour l'en-tête */
+  color: #00427E; /* Deep Night Blue pour le texte de l'en-tête */
+  font-weight: bold;
+  padding: 12px 15px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 2px solid #D3DCE6; /* Bordure plus prononcée en bas de l'en-tête */
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+}
+
+.table thead th a {
+  text-decoration: none;
+}
+
+/* Table body cells (tbody) */
+.table tbody td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #E9ECEF; /* Bordures subtiles entre les lignes */
+}
+
+/* Row hover effect for interactivity */
+.table tbody tr:hover {
+  background-color: #FDFDFD;
+  cursor: pointer;
+}
+
+/* Striped rows (if .table-striped class is used) */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #FBFBFB;
+}
+
+/* Specific style for the "Message" column (or any long text column) */
+table.sonata-ba-list  tbody td.sonata-ba-list-field.sonata-ba-list-field-textarea {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+  max-height: 60px;
+}
+
+/* ======================================= */
+/* ACTIONS BUTTON STYLES (inside table)    */
+/* ======================================= */
+.table .list-actions .btn-object-item-actions {
+  background-color: transparent;
+  border-color: transparent;
+  color: #495057;
+  padding: 0.25rem 0.5rem;
+}
+
+.table .list-actions .btn-object-item-actions:hover,
+.table .list-actions .btn-object-item-actions:focus,
+.table .list-actions .btn-object-item-actions:active {
+  background-color: #f8f9fa;
+  border-color: #f8f9fa;
+  box-shadow: none;
+}
+
+/* Style de l'icône à l'intérieur du bouton */
+.table .list-actions .btn-object-item-actions span {
+  font-weight: bold;
+  color: #34495E; /* Ou la couleur que vous préférez pour les trois points */
+}
+
+.list-actions ul li.dropdown-item-action a.view_link{
+  background-color:#0dcaf0;
+  color:#ffff ;
+  font-weight: bold;
+}
+.list-actions ul li.dropdown-item-action a.delete_link {
+  background-color: #dc3545;;
+  color: #ffff;
+  font-weight: bold;
+}
+.list-actions ul li.dropdown-item-action a.edit_link {
+  background-color:#0d6efd;
+  color: #ffff;
+  font-weight: bold;
+}
+div.box.box-primary div.card-header{
+  background: linear-gradient(
+      135deg,
+      rgba(0, 66, 126, 0.9) 0%, /* Your principal blue with 90% opacity */
+      rgba(0, 51, 102, 0.95) 50%, /* Darker shade with 95% opacity */
+      rgba(0, 33, 66, 0.98) 100% /* Even darker shade with 98% opacity */
+  );         
+}
+/* Vous pouvez aussi le cibler par le h3 */
+div.box.box-primary  div.card-header h3.card-title {
+  color: #fff;
+  font-weight: 600;
+  margin-bottom:15px;
+}
+
+/* ======================================= */
+/* FOOTER STYLES (pied de page du tableau) */
+/* ======================================= */
+.box-footer {
+  padding: 1rem;
+  border-top: 1px solid #D3DCE6;
+  background-color: #F8F9FA;
+}
+
+.box-footer .form-inline.clearfix {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+.box-footer .pull-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.box-footer .pull-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.box-footer .btn-default {
+  background-color: #FAFAFA;
+  border-color: #E9ECEF;
+  color: #2C3E50;
+  transition: all 0.2s;
+}
+
+.box-footer .btn-default:hover {
+  background-color: #D3DCE6;
+  border-color: #D3DCE6;
+}
+
+.box-footer .form-select {
+  border-radius: 0.25rem;
+  border: 1px solid #E9ECEF;
+  background-color: #FFFFFF;
+  color: #34495E;
+}
+
+.box-footer .form-label {
+  color: #34495E;
+}
+
+.box-footer hr {
+  display: none;
+}
+
+/* ======================================= */
+/* PAGER LINKS STYLES                      */
+/* ======================================= */
+.box-footer div#pagination-container{
+  margin-top: 20px;
+}
+/* Style du conteneur de pagination */
+.box-footer .pagination {
+  margin: 0;
+}
+
+/* Style des liens de pagination */
+.box-footer .page-link {
+  color: #00427E; /* Couleur de lien forte, assortie au titre de l'en-tête du tableau */
+  text-decoration: none;
+  border: 1px solid #E9ECEF;
+  margin: 0 2px;
+}
+
+/* Effet de survol */
+.box-footer .page-link:hover {
+  background-color: #E9ECEF; /* Fond clair au survol */
+  color: #2C3E50;
+  text-decoration: none;
+}
+
+/* Style du lien actif (page actuelle) */
+.box-footer .page-item.active .page-link {
+  background-color: #00427E; /* Couleur de fond assortie à l'en-tête */
+  color: #FFFFFF; /* Texte blanc */
+  border-color: #00427E;
+}
+
+.box-footer .page-item.active .page-link:hover {
+  background-color: #00427E;
+  color: #FFFFFF;
+  border-color: #00427E;
+}
+
+/* ======================================= */
+/* Actions et Filtres (design & alignement)*/
+/* ======================================= */
+
+/* Aligner les éléments de l'en-tête */
+/* Assurer que les éléments de la nav-bar sont bien espacés */
+.navbar-container-header .navbar-nav.element-action {
+  gap: 15px; /* Ajustez cette valeur pour l'espacement souhaité */
+}
+div.app-content-header.content-header .navbar-container-header {
+  background-color:#f9f9f9;  
+  width:100%;
+
+}    
+
+/* ======================================= */
+/* Styles pour les boutons d'action en haut de la liste */
+/* ======================================= */
+/* Cibler le conteneur des boutons de changement de mode d'affichage */
+.app-content-header  .nav.navbar-right.btn-group {
+  /* Utiliser Flexbox pour aligner les boutons */
+  display: flex;
+  /* Ajouter de l'espace entre les éléments enfants */
+  gap: 10px; /* Ajustez la valeur pour l'espacement souhaité */
+  
+  /* Centrer verticalement */
+  align-items: center;
+}
+/* Bouton principal "Ajouter" */
+.app-content-header  a.btn-create {
+  background-color: #00427E;
+  border-color: #00427E;
+  color: #FFFFFF;
+}
+.app-content-header  a.btn-create:hover {
+  background-color: #003058;
+  border-color: #003058;
+}
+
+/* Boutons secondaires (Filtres et vue) */
+.app-content-header  .sonata-actions.sonata-filter-container a.sonata-ba-action-filter {
+  background-color: #FFFFFF;
+  border: 1px solid #E9ECEF;
+  color: #2C3E50;
+  transition: all 0.2s;
+}
+.app-content-header  .sonata-actions.sonata-filter-container a.sonata-ba-action-filter:hover {
+  background-color: #F8F9FA;
+    border-color: #D3DCE6;
+    color: #2C3E50;
+}
+
+/* Bouton actif du sélecteur de vue (Liste/Grille) */
+.app-content-header  .btn-group .btn-default.navbar-btn.active {
+  background-color: #00427E;
+  border-color: #00427E;
+  color: #FFFFFF;
+}
+.app-content-header  .btn-group .btn-default.navbar-btn.active:hover {
+  background-color: #003058;
+  border-color: #003058;
+}
+
+/* Styles pour les dropdowns (Filtres) */
+.app-content-header .sonata-actions.sonata-filter-container .dropdown-menu-scrollable {
+  background-color: #FFFFFF;
+  border: 1px solid #D3DCE6;
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  max-height: 75vh; 
+  overflow-y: auto;
+}
+/* Éléments de la liste des filtres */
+.dropdown-menu .sonata-toggle-filter {
+  color: #34495E;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+/* Survol d'un élément du menu */
+.dropdown-menu .sonata-toggle-filter:hover {
+  background-color: #F8F9FA;
+  color: #2C3E50;
+}
+
+/* Styles pour l'icône de la checkbox */
+.dropdown-menu .sonata-toggle-filter i {
+  color: #95a5a6; /* Couleur par défaut pour la checkbox */
+  font-size: 1.1rem;
+}
+
+/* Style de la checkbox quand le filtre est ACTIF */
+.dropdown-menu .sonata-toggle-filter.active i {
+  color: #00427E; /* Couleur de votre thème pour un filtre actif */
+}
+
+/* Le "badge" du compteur qui montre le nombre de filtres actifs */
+.app-content-header .sonata-ba-action-filter .badge {
+  background-color: #00427E;
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  padding: 0.35em 0.6em;
+  border-radius: 50%;
+  margin-left: 5px;
 }

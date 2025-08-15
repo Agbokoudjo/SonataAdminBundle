@@ -1,0 +1,74 @@
+/* ======================================= */
+/* RESPONSIVE TABLE CSS (mobile) (GÉNÉRIQUE)           */
+/* ======================================= */
+@media only screen and (max-width: 767px) {
+  .table, .table thead, .table tbody, .table th, .table td, .table tr { 
+    display: block; 
+  }
+  
+  .table thead { 
+    display: none;
+  }
+  
+  .table tr { 
+    border: 1px solid #e9ecef;
+    margin-bottom: 1rem;
+    border-radius: 0.25rem;
+    background-color: #ffffff;
+  }
+  
+  .table td { 
+    border: none;
+    box-shadow: inset 0 1px 0 #e9ecef;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .table td:first-child {
+    box-shadow: none;
+  }
+
+  .table td::before { 
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    width: 45%; 
+    padding-right: 10px; 
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+    color: #00427E;
+  }
+
+  .table td.actions::before {
+    display: none;
+  }
+}
+
+/* ======================================= */
+/* MEDIA QUERIES pour le mobile            */
+/* ======================================= */
+@media (max-width: 767px) {
+  .box-footer .form-inline.clearfix {
+      flex-direction: column;
+      align-items: stretch;
+  }
+
+  .box-footer .pull-left,
+  .box-footer .pull-right {
+      justify-content: space-between;
+      width: 100%;
+  }
+
+  .box-footer .pull-right {
+      margin-top: 15px;
+  }
+
+  .box-footer hr {
+      display: block;
+      border-color: #D3DCE6;
+  }
+}

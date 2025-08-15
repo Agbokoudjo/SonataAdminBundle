@@ -1,29 +1,34 @@
 {
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.5.2",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "@hotwired/stimulus": "^3.2",
     "@symfony/stimulus-bridge": "^3.2",
     "admin-lte": "^4.0.0-rc3",
     "bootstrap": "^5.3.7",
-    "readmore-js": "^2",
-    "jquery-slimscroll": "^1.3",
-    "jquery-ui": "^1.13",
-    "masonry-layout": "^4.2",
-    "waypoints": "^4",
     "icheck": "^1.0.2",
     "jquery": "^3.7.1",
     "jquery-form": "^4.3.0",
+    "jquery-slimscroll": "^1.3",
+    "jquery-ui": "^1.13",
     "jquery.scrollto": "^2.1.3",
+    "masonry-layout": "^4.2",
     "qs": "^6.13.1",
+    "readmore-js": "^2",
     "select2": "^4.1.0-rc.0",
     "select2-bootstrap-5-theme": "^1.3.0",
+    "waypoints": "^4",
     "x-editable": "^1.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.21",
+    "@babel/core": "^7.28.0",
     "@babel/eslint-parser": "^7.21",
+<<<<<<< HEAD
     "@babel/preset-env": "^7.21",
     "@symfony/webpack-encore": "^5.2",
+=======
+    "@babel/preset-env": "^7.28.0",
+    "@symfony/webpack-encore": "^5.1.0",
+>>>>>>> 926460c9c (Update Sonata Admin assets and Webpack Encore build)
     "autoprefixer": "^10.4",
     "eslint": "^8.39",
     "eslint-config-airbnb-base": "^15.0",
@@ -37,7 +42,11 @@
     "postcss-scss": "^4.0",
     "prettier": "^2.8",
     "sass-embedded": "^1.62",
+<<<<<<< HEAD
     "sass-loader": "^16.0",
+=======
+    "sass-loader": "^16.0.1",
+>>>>>>> 926460c9c (Update Sonata Admin assets and Webpack Encore build)
     "stylelint": "^15.6",
     "stylelint-config-standard-scss": "^9.0",
     "stylelint-order": "^6.0",

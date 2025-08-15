@@ -1,4 +1,4 @@
-/** 
+/*!
  * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -9,7 +9,8 @@
 
 // Any SCSS/CSS you require will output into a single css file (app.css in this case)
 import '../scss/app.scss';
-
+import '@fortawesome/fontawesome-free/js/all.min';
+import 'bootstrap/dist/js/bootstrap.min'
 // Require jQuery normally
 import $ from 'jquery';
 
@@ -23,7 +24,7 @@ import 'jquery-form';
 import 'icheck';
 import 'jquery.scrollto';
 import 'masonry-layout';
-import 'bootstrap';
+// import 'bootstrap';
 import 'select2/dist/js/select2.min';
 // SonataAdmin custom scripts
 import './admin';

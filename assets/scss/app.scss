@@ -6,9 +6,15 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
- @import "~bootstrap/scss/bootstrap";
-
+/* SCSS internes */
+@use './styles' as *;
+@use './layout' as *;
+@use './mobile' as *;
+// @use './tree' as *;
+@use './flashmessage' as *;
+// @use './admin-lte-fas' as *;
+@use './readmore' as *;
+@import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~admin-lte/dist/css/adminlte.min.css' ;
 
 @import "~@fortawesome/fontawesome-free/css/all.min.css";
@@ -16,10 +22,4 @@
 @import "~jquery-ui/themes/base/sortable.css";
 @import "~select2-bootstrap-5-theme/dist/select2-bootstrap-5-theme.min.css";
 @import "~select2/dist/css/select2.min.css";
-// SonataAdmin custom styles
-@import './styles';
-@import './layout';
-@import './tree';
-@import './flashmessage';
-@import './admin-lte-fas';
-@import './readmore';
+
