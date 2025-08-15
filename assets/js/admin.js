@@ -93,7 +93,7 @@ const Admin = {
 
         select.select2({
           width: () => Admin.get_select2_width(select),
-          theme: 'bootstrap',
+          theme: 'bootstrap-5',
           dropdownAutoWidth: true,
           minimumResultsForSearch,
           placeholder: allowClearEnabled ? ' ' : '', // allowClear needs placeholder to work properly
@@ -318,7 +318,7 @@ const Admin = {
     }
 
     const options = {
-      theme: 'bootstrap',
+       theme: "bootstrap-5",
       width: () => Admin.get_select2_width(subject),
       dropdownAutoWidth: true,
       data: [...selectedItems, ...unselectedItems],
