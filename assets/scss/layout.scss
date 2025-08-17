@@ -6,27 +6,674 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+/* ======================================= */
+/* VARIABLES GLOBALES DE COULEURS          */
+/* ======================================= */
+:root {
+  /* Couleurs primaires (utilisées pour les actions, les boutons importants, les titres) */
+  --color-primary: #00427E;
+  --color-primary-dark: #003058;
+  --color-primary-light: #00A3FF;
+  --color-text-mobile-table-td-before:var(--color-primary);
+  /* Couleurs de fond et de texte */
+  --color-text-primary: #34495E;
+  --color-text-secondary: #2C3E50;
+  --color-gray-light:#f9f9f9;
+  --color-bg-light: #F8F9FA;
+  --color-bg-white: #FFFFFF;
+  --color-white: #FFFFFF;
+  --color-checkbox: #95a5a6;
+  /* Couleurs de la barre latérale */
+  --color-sidebar-bg-start: rgba(0, 66, 126, 0.9);
+  --color-sidebar-bg-end: rgba(0, 33, 66, 0.98);
+  --color-sidebar-text: rgba(255, 255, 255, 0.7);
+  --color-sidebar-icon: rgba(255, 255, 255, 0.85);
+  --color-sidebar-bg-middle: rgba(0, 51, 102, 0.95) ;
+  --color-sidebar-nav-link-hover: rgba(255, 255, 255, 0.08); /* Subtle light overlay on hover */
+  --color-sidebar-nav-link-hover-text:var(--color-white);
+   /* Ici tu définis ton dégradé par défaut */
+  --color-bg-x: linear-gradient(
+    135deg,
+    var(--color-sidebar-bg-start) 0%,
+    var(--color-sidebar-bg-middle) 50%,
+    var(--color-sidebar-bg-end) 100%
+  );
+  --color-bg-sidebar:var(--color-bg-x);
+  --color-sidebar-text:var(--color-white);
+  /* Couleurs des bordures et séparateurs */
+  --color-border-subtle: #D3DCE6;
+  --color-border-light: #E9ECEF;
+  --color-border-dark: #E0E0E0;
+  --color-border-box-footer-hr:var(--color-border-subtle);
+  /* Couleurs de feedback */
+  --color-action-success: #28a745;
+  --color-action-danger: #dc3545;
+  --color-action-info: #0dcaf0;
+  --color-action-edit:#0d6efd;
+  --color-text-body:var(--color-text-primary);
+  --color-bg-body:var(--color-bg-light);
+  --color-text-logo-name-site:var(--color-bg-white);
+  --color-border-sidebar:rgba(255, 255, 255, 0.08); /* Subtle border to define sidebar edge */
+  --color-shadow-depth:rgba(0, 0, 0, 0.05);
+  --color-border-left-sidebar:var(--color-primary-light);
+  --color-bg-sidebar-nav-link-active:rgba(255, 255, 255, 0.15); 
+  --color-text-sidebar-nav-link-active:var(--color-white);
+  --color-light-neutral-gray: #ECF0F1;
+  --color-bg-header:var(--color-light-neutral-gray);
+  --color-text-header:var(--color-text-secondary);
+  --color-shadow-header:rgba(0, 0, 0, 0.05);
+  --color-border-bottom-header:var(--color-border-dark);
+  --color-text-nav-link-header:var(--color-text-primary);
+  --color-text-header-nav-link-hover:var(--color-primary-light);
+  --color-dropdown-header-header:var(--color-text-secondary); 
+  --color-text-dropdown-a-header:var(--color-text-primary);
+  --color-text-dropdown-a-hover-header:var(--color-text-secondary);
+  --color-bg-dropdown-a-hover-header:var(--color-bg-light);
+  --color-bg-main:var(--color-bg-white);
+  --color-text-main:var(--color-text-primary);
+  --color-text-table:var(--color-text-primary);
+  --color-bg-table-thead-th:var(--color-bg-light);
+  --color-text-table-thead-th:var(--color-primary);
+  --color-border-bottom-table-th:var(--color-border-subtle);
+  --color-shadow-table-th:rgba(0, 0, 0, 0.05);
+  --color-border-table-tbody-td:var(--color-border-light);
+  --color-bg-table-tbody-tr-hover:#FDFDFD;
+  --color-bg-table-tbody-tr-nth-of-type-odd:#FBFBFB;
+  --color-text-table-list-actions-object-item-action:#495057;
+  --color-text-table-list-actions-object-item-action-hover-focus-active:var(--color-bg-light);
+  --color-text-table-list-actions-object-item-action-span:var(--color-text-primary)
+  --color-bg-card-header:var(--color-bg-x);
+  --color-bg-card-title:var(--color-white);
+  --color-border-top-footer:#D3DCE6;
+  --color-bg-footer:var(--color-bg-light);
+  --color-bg-btn-default-footer: #FAFAFA;
+  --color-border-btn-default-footer:var( --color-border-light);
+  --color-text-btn-default-footer:var(--color-text-secondary);
+  --color-bg-hover-btn-default-footer:#D3DCE6;
+  --color-border-form-select-footer:var(--color-border-light);
+  --color-text-form-select-footer:var(--color-text-primary);
+  --color-text-page-link-pagination:var(--color-primary);
+  --color-border-page-link-pagination:var(--color-border-light);
+  --color-bg-hover-page-link-pagination:var(--color-border-light);
+  --color-text-hover-page-link-pagination:var(--color-border-light);
+  --color-bg-page-item-active-page-link-pagination:var(--color-primary);
+  --color-border-page-item-active-page-link-pagination:var(--color-primary);
+  --color-text-page-item-active-page-link-pagination:var(--color-white);
+  --color-bg-content-header-navbar-container-header:var(--color-gray-light);
+  --color-bg-content-header-a-btn-create:var(--color-primary);
+  --color-border-content-header-a-btn-create:var(--color-primary);
+  --color-bg-hover-content-header-a-btn-create:var(--color-primary-dark);
+  --color-border-hover-content-header-a-btn-create:var(--color-primary-dark);
+  --color-text-sonata-actions-sonata-ba-action-filter:var(--color-text-secondary);
+  --color-bg-sonata-actions-sonata-ba-action-filter:var(--color-bg-white);
+  --color-border-sonata-actions-sonata-ba-action-filter:var(--color-border-light);
+  --color-bg-hover-sonata-actions-sonata-ba-action-filter:var(--color-border-light);
+  --color-border-hover-sonata-actions-sonata-ba-action-filter:var(--color-border-subtle);
+  --color-bg-mode-display:var(--color-primary);
+  --color-text-mode-display:var(--color-white);
+  --color-bg-hover-mode-display:var(--color-primary-dark);
+  --color-text-sonata-toggle-filter:var(--color-text-primary);
+  --color-text-hover-sonata-toggle-filter:var(--color-text-secondary);
+  --color-text-sonata-toggle-filter-active:var(--color-primary); /* Couleur de votre thème pour un filtre actif */
+  --color-bg-sonata-ba-action-filter-badge:var(--color-primary);
+  --color-text-sonata-ba-action-filter-badge:var(--color-white);
+  --color-bg-sonata-filters-box: #F7F9FC; /* Gris très clair */
+  --color-text-sonata-filters-box-filter-label:var(--color-white);
+  --color-gray-anthracite: #555555; /* Gris anthracite */
+  --color-text-sonata-filters-box-label:var(--color-gray-anthracite);
+  --color-border-form-control-sonata-filters-box:#BCC4D1; /* Bordure gris-bleu */
+}
 
-.noscript-warning {
-  background-color: #c70a0a;
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 4px 0;
-  text-align: center;
+html {
+    font-size: initial !important;
+    min-height: 100%;
+    position: relative;
+  }
+/* Basic body styling for consistent font and background */
+.body{
+    font-size:1rem;
+    font-family: 'Fraunces','Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width:100%;
+    min-width:100%;
+    max-width:100%;
+    color: var(--color-text-body);
+    background-color: var(--color-bg-body);
+}
+
+.logo{
+    transition: background-color 0.3s, border-bottom 0.3s;
+}
+.logo a{
+    text-decoration: none;
+}
+.logo img {
+    display: inline;
+    width: 50px;
+    height: 50px;
+    padding-bottom: 4px;
+  }
+.logo  span {
+    display: inline-block;
+    line-height: 1;
+    vertical-align: middle;
+    width: 200px;
+    font-weight: bolder;
+  }
+  .logo span.brand-text.name-site{
+    color:var(--color-text-logo-name-site);
+  }
+.logo img + span {
+    width: 140px;
+  }
+
+/*sidebar*/
+/* ======================================= */
+/* GLOBAL STYLES & LAYOUT BASE             */
+/* ======================================= */
+
+/* ======================================= */
+/* SIDEBAR (LATERAL MENU) STYLES           */
+/* ======================================= */
+#app-sidebar {
+  /* Main background with your desired blue gradient */
+ background: var(--color-bg-sidebar);
+  color:var(--color-sidebar-text);
+  border-right: 1px solid var(--color-border-sidebar);
+  box-shadow: 2px 0 5px var(--color-shadow-depth);  /* Soft shadow for depth */
+  height: 100%;
+}
+
+/* Ensure overflow is handled for scrollable content */
+.app-sidebar #sidebar-wrapper {
+  overflow-y: auto;
+}
+
+/* Specific styling for navigation items (AdminLTE .nav-item > .nav-link) */
+#app-sidebar .nav-item > .nav-link {
+ color: var(--color-sidebar-text);
+  padding: 10px 15px; /* Adjust padding for better spacing */
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition effects */
+  display: flex; /* Use flexbox for icon and text alignment */
+  align-items: center;
+}
+
+
+/* Icons within sidebar menu items */
+#app-sidebar .nav-item > .nav-link i {
+  color: var(--color-sidebar-icon);
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 1.1em; /* Adjust icon size if needed */
+}
+
+/* Hover state for sidebar menu items */
+#app-sidebar .nav-item > .nav-link:hover {
+  background-color:var(--color-sidebar-nav-link-hover);
+   color: var(--color-bg-white);
+   border-left: 3px solid var(--color-border-left-sidebar);
+}
+
+/* Active state for sidebar menu items (current page) */
+#app-sidebar .nav-item > .nav-link.active {
+  background-color: var(--color-bg-sidebar-nav-link-active);/* More pronounced background for active item */
+  color: var(--color-text-sidebar-nav-link-active); /* Pure white text for active item */
+  border-left: 3px solid var(--color-bg-sidebar-nav-link-active); /* Distinct blue border on the left for active item */
+  font-weight: 600; /* Make active item text bolder */
+}
+
+/* ======================================= */
+/* HEADER STYLES                           */
+/* ======================================= */
+#app-header {
+  background-color: var(--color-bg-app-header);/* Light Neutral Gray */
+  color:var(--color-text-header) ; /* Deep Night Blue for main header text/icons */
+  box-shadow: 0 2px 4px var(--color-shadow-header); /* Very light shadow for subtle depth */
+  border-bottom: 1px solid var(--color-border-bottom-header); /* Soft bottom border for separation */
+  padding: 15px 20px; /* Ensure good internal spacing */
+  height: 60px;
+  min-width: 100%;
+}
+
+/* Specific styles for header navigation links/icons (e.g., user dropdown, notifications) */
+#app-header .navbar-nav .nav-link {
+  color: var(--color-text-nav-link-header); /* Slightly softer gray-blue for secondary header elements */
+  transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+#app-header .navbar-nav .nav-link:hover {
+  color:  var(--color-text-header-nav-link-hover);/* A touch of light blue on hover for interactive elements */
+}
+
+
+/* breadcrumb */
+.sonata-bc .breadcrumb {
+  background: inherit;
+  float: left;
+  margin: 0;
+  padding: 0;
+}
+.sonata-bc .breadcrumb li a {
+  display: inline-block;
+}
+/* MEGA MENU STYLE
+********************************/
+#app-header .dropdown-menu .dropdown-menu {
+  border: none !important;
+  box-shadow: none !important;
+  display: block !important;
+  margin: 0 !important;
+  position: static !important;
+}
+
+#app-header .dropdown-menu.multi-column .dropdown-menu {
+  min-width: 100px;
+}
+
+/* ======================================= */
+/* Styles pour le menu déroulant "Ajouter" */
+/* ======================================= */
+
+/* Cibler le conteneur principal du menu déroulant */
+#app-header .dropdown-menu.multi-column.dropdown-add {
+  /* Retirer la largeur fixe qui cause le problème */
+  width: auto !important; 
+  
+  /* Définir une largeur minimale si nécessaire, ou une largeur maximale */
+  min-width: 250px;
+  max-width: 350px;
+
+  /* Ajouter des ombres et des bords pour un design plus propre */
+  border: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 0.25rem;
+  padding: 8px 0;
+}
+
+
+/* Style des en-têtes de groupe (par exemple, "Gestion des Contacts") */
+#app-header .dropdown-menu .dropdown-header {
+  font-weight: 600;
+  color: var(--color-dropdown-header-header);
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+/* Style des éléments de liste (par exemple, "Message") */
+#app-header .dropdown-menu ul.dropdown-menu li {
+  padding: 0;
+}
+#app-header .dropdown-menu ul.dropdown-menu a {
+  color: var( --color-dropdown-a-header);
+  padding: 8px 16px;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+/* Survol des liens du menu */
+#app-header .dropdown-menu ul.dropdown-menu a:hover {
+  background-color:var(--color-bg-dropdown-a-hover-header);
+  color: var(--color-text-dropdown-a-hover-header);
+}
+
+/* Ajuster les styles de Bootstrap pour les menus multi-colonnes */
+#app-header .dropdown-menu.multi-column .container-fluid .row {
+  margin: 0;
+}
+#app-header .dropdown-menu.multi-column .dropdown-menu-column_count {
+  padding: 0;
+}
+
+/* ======================================= */
+/* MAIN CONTENT AREA STYLES                */
+/* ======================================= */
+#app-main {
+  background-color: var(--color-bg-main); /* Pure White for the main content background */
+  color: var(--color-text-main); /* Dark Gray-Blue for general body text */
+  padding: 20px 25px; /* Add general padding for overall content area */
+  min-height: calc(100vh - 70px); /* Example: adjust min-height to push footer down if needed */
+  height: 100%;
+  min-width: 100%;
+}
+
+/* ======================================= */
+/* TABLE STYLES (within main content)      */
+/* ======================================= */
+
+.table {
   width: 100%;
+  margin-bottom: 1rem;
+  color: var(--color-text-table); /* Gris-Bleu Foncé pour le texte du tableau */
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+/* Table header (thead) */
+.table thead th {
+  background-color: var( --color-bg-table-thead-th); /* Fond très clair pour l'en-tête */
+  color: var(--color-text-table-thead-th); /* Deep Night Blue pour le texte de l'en-tête */
+  font-weight: bold;
+  padding: 12px 15px;
+  text-align: left;
+  white-space: nowrap;
+  border-bottom: 2px solid var(--color-border-bottom-table-th); /* Bordure plus prononcée en bas de l'en-tête */
+  box-shadow: inset 0 -1px 0 var( --color-shadow-table-th);
+}
+
+.table thead th a {
+  text-decoration: none;
+}
+
+/* Table body cells (tbody) */
+.table tbody td {
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--color-border-table-tbody-td); /* Bordures subtiles entre les lignes */
+}
+
+
+/* Row hover effect for interactivity */
+.table tbody tr:hover {
+  background-color: var(--color-bg-table-tbody-tr-hover);
+  cursor: pointer;
+}
+
+/* Striped rows (if .table-striped class is used) */
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color:var(--color-bg-table-tbody-tr-nth-of-type-odd);
+}
+
+/* Specific style for the "Message" column (or any long text column) */
+table.sonata-ba-list  tbody td.sonata-ba-list-field.sonata-ba-list-field-textarea {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+  max-height: 60px;
+}
+
+
+/* ======================================= */
+/* ACTIONS BUTTON STYLES (inside table)    */
+/* ======================================= */
+.table .list-actions .btn-object-item-actions {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--color-text-table-list-actions-object-item-action);
+  padding: 0.25rem 0.5rem;
+}
+
+.table .list-actions .btn-object-item-actions:hover,
+.table .list-actions .btn-object-item-actions:focus,
+.table .list-actions .btn-object-item-actions:active {
+  background-color: var(--color-text-table-list-actions-object-item-action-hover-focus-active);
+  border-color: var(--color-text-table-list-actions-object-item-action-hover-focus-active);
+  box-shadow: none;
+}
+
+/* Style de l'icône à l'intérieur du bouton */
+.table .list-actions .btn-object-item-actions span {
+  font-weight: bold;
+  color: var(--color-text-table-list-actions-object-item-action-span); /* Ou la couleur que vous préférez pour les trois points */
+}
+
+.list-actions ul li.dropdown-item-action a.view_link{
+  font-weight: bold;
+   background-color: var(--color-action-info);
+  color: var(--color-white);
+}
+
+.list-actions ul li.dropdown-item-action a.delete_link {
+  background-color: var(--color-action-danger);
+color: var(--color-white);
+  font-weight: bold;
+}
+
+.list-actions ul li.dropdown-item-action a.edit_link {
+  background-color:var(--color-action-edit);
+ color: var(--color-white);
+  font-weight: bold;
+}
+
+div.box.box-primary div.card-header{
+  background:var( --color-bg-card-header); 
+}
+
+/* Vous pouvez aussi le cibler par le h3 */
+div.box.box-primary  div.card-header h3.card-title {
+  color: var(--color-bg-card-title);
+  font-weight: 600;
+  margin-bottom:15px;
+}
+
+
+/* ======================================= */
+/* FOOTER STYLES (pied de page du tableau) */
+/* ======================================= */
+.box-footer {
+  padding: 1rem;
+  border-top: 1px solid var(--color-border-top-footer);
+  background-color: var(--color-bg-footer);
+  font-weight: 800;
+}
+
+.box-footer .form-inline.clearfix {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.box-footer .pull-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.box-footer .pull-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.box-footer .btn-default {
+  background-color:var(--color-bg-btn-default-footer);
+  border-color: var(--color-border-btn-default-footer);
+  color: var(--color-text-btn-default-footer);
+  transition: all 0.2s;
+}
+
+.box-footer .btn-default:hover {
+  background-color: var(--color-bg-hover-btn-default-footer);
+  border-color: var(--color-bg-hover-btn-default-footer);
+}
+
+.box-footer .form-select {
+  border-radius: 0.25rem;
+  border: 1px solid var(--color-border-form-select-footer);
+  background-color: #FFFFFF;
+  color: var(--color-text-form-select-footer);
+}
+
+
+.box-footer .form-label {
+  color: var(--color-text-form-select-footer);
+}
+
+.box-footer hr {
+  display: none;
+}
+
+/* ======================================= */
+/* PAGER LINKS STYLES                      */
+/* ======================================= */
+.box-footer div#pagination-container{
+  margin-top: 20px;
+}
+/* Style du conteneur de pagination */
+.box-footer .pagination {
+  margin: 0;
+}
+
+/* Style des liens de pagination */
+.box-footer .page-link {
+  color: var(--color-text-page-link-pagination); /* Couleur de lien forte, assortie au titre de l'en-tête du tableau */
+  text-decoration: none;
+  border: 1px solid var(--color-border-page-link-pagination);
+  margin: 0 2px;
+}
+
+/* Effet de survol */
+.box-footer .page-link:hover {
+  background-color: var(--color-bg-hover-page-link-pagination); /* Fond clair au survol */
+  color: var(--color-text-hover-page-link-pagination);
+  text-decoration: none;
+}
+
+/* Style du lien actif (page actuelle) */
+.box-footer .page-item.active .page-link {
+  background-color: var(--color-bg-page-item-active-page-link-pagination); /* Couleur de fond assortie à l'en-tête */
+  color: var(--color-text-page-item-active-page-link-pagination); /* Texte blanc */
+  border-color: var(--color-border-page-item-active-page-link-pagination);
+}
+
+.box-footer .page-item.active .page-link:hover {
+   background-color: var(--color-bg-page-item-active-page-link-pagination); /* Couleur de fond assortie à l'en-tête */
+  color: var(--color-text-page-item-active-page-link-pagination); /* Texte blanc */
+  border-color: var(--color-border-page-item-active-page-link-pagination);
+}
+
+/* ======================================= */
+/* Actions et Filtres (design & alignement)*/
+/* ======================================= */
+
+/* Aligner les éléments de l'en-tête */
+/* Assurer que les éléments de la nav-bar sont bien espacés */
+.navbar-container-header .navbar-nav.element-action {
+  gap: 15px; /* Ajustez cette valeur pour l'espacement souhaité */
+}
+div.app-content-header.content-header .navbar-container-header {
+  background-color:var(--color-bg-content-header-navbar-container-header);  
+  width:100%;
+
+}  
+
+/* ======================================= */
+/* Styles pour les boutons d'action en haut de la liste */
+/* ======================================= */
+/* Cibler le conteneur des boutons de changement de mode d'affichage */
+.app-content-header  .nav.navbar-right.btn-group {
+  /* Utiliser Flexbox pour aligner les boutons */
+  display: flex;
+  /* Ajouter de l'espace entre les éléments enfants */
+  gap: 10px; /* Ajustez la valeur pour l'espacement souhaité */
+  
+  /* Centrer verticalement */
+  align-items: center;
+}
+
+  
+/* Bouton principal "Ajouter" */
+.app-content-header  a.btn-create {
+  background-color: var(--color-bg-content-header-a-btn-create);
+  border-color: var(--color-border-content-header-a-btn-create);
+  color: var(--color-white);
+}
+.app-content-header  a.btn-create:hover {
+  background-color: var(--color-bg-hover-content-header-a-btn-create);
+  border-color: var(--color-border-hover-content-header-a-btn-create);
+}
+
+/* Boutons secondaires (Filtres et vue) */
+.app-content-header  .sonata-actions.sonata-filter-container a.sonata-ba-action-filter {
+  background-color: var(--color-bg-sonata-actions-sonata-ba-action-filter);
+  border: 1px solid var(--color-border-sonata-actions-sonata-ba-action-filter);
+  color: var(--color-text-sonata-actions-sonata-ba-action-filter);
+  transition: all 0.2s;
+}
+
+.app-content-header  .sonata-actions.sonata-filter-container a.sonata-ba-action-filter:hover {
+  background-color: var(--color-bg-hover-sonata-actions-sonata-ba-action-filter);
+    border-color: var(--color-border-hover-sonata-actions-sonata-ba-action-filter);
+    color:var(--color-text-sonata-actions-sonata-ba-action-filter);
+}
+
+/* Bouton actif du sélecteur de vue (Liste/Grille) */
+.app-content-header  .btn-group .btn-default.navbar-btn.active {
+  background-color: var( --color-bg-mode-display);
+  border-color:  var( --color-bg-mode-display);
+  color: var(--color-text-mode-display);
+}
+.app-content-header  .btn-group .btn-default.navbar-btn.active:hover {
+  background-color: var(--color-bg-hover-mode-display);
+  border-color: var(--color-bg-hover-mode-display);
+}
+
+/* Styles pour les dropdowns (Filtres) */
+.app-content-header .sonata-actions.sonata-filter-container .dropdown-menu-scrollable {
+  background-color: var(--color-bg-white);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 8px 0;
+  max-height: 75vh; 
+  overflow-y: auto;
+}
+
+/* Éléments de la liste des filtres */
+.dropdown-menu .sonata-toggle-filter {
+  color: var(--color-text-sonata-toggle-filter);
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+/* Survol d'un élément du menu */
+.dropdown-menu .sonata-toggle-filter:hover {
+  background-color: var(--color-bg-light);
+  color: var(--color-text-hover-sonata-toggle-filter);
+}
+
+/* Styles pour l'icône de la checkbox */
+.dropdown-menu .sonata-toggle-filter i {
+  color: var(--color-checkbox); /* Couleur par défaut pour la checkbox */
+  font-size: 1.1rem;
+}
+
+/* Style de la checkbox quand le filtre est ACTIF */
+.dropdown-menu .sonata-toggle-filter.active i {
+  color: var(--color-text-sonata-toggle-filter-active);
+}
+
+/* Le "badge" du compteur qui montre le nombre de filtres actifs */
+.app-content-header .sonata-ba-action-filter .badge {
+  background-color: var(--color-bg-sonata-ba-action-filter-badge);
+  color: var(--color-text-sonata-ba-action-filter-badge);
+  font-size: 0.75rem;
+  padding: 0.35em 0.6em;
+  border-radius: 50%;
+  margin-left: 5px;
 }
 
 /* Règle 1: Conteneur principal */
 
 .sonata-filters-box .box-body {
-    background-color: #F7F9FC; /* Gris très clair */
+    background-color:var(--color-bg-sonata-filters-box);
     padding-top:2rem;
 }
 
 /* Règle 2: Titre de la zone de filtre */
 .sonata-filters-box .filter-label.card-title {
-   color: #fff;/*#34495E;  Bleu sombre */
+   color:var( --color-text-sonata-filters-box-filter-label);
     font-weight: bold;
     font-size: 1.2em;
     margin-bottom: 20px;
@@ -34,12 +681,14 @@
 
 /* Règle 3: Libellés des champs (Téléphone, Email, etc.) */
 .sonata-filters-box label {
-    color: #555555; /* Gris anthracite */
+    color:var(--color-text-sonata-filters-box-label);
     font-weight: 800;
 }
 
 /* Règle 4: Bordures des champs de saisie */
 /* Cette règle rend les champs de saisie plus discrets et modernes */
 .sonata-filters-box .form-control {
-    border: 1px solid #BCC4D1; /* Bordure gris-bleu */
+    border: 1px solid var(--color-border-form-control-sonata-filters-box);
 }
+
+

@@ -31,7 +31,6 @@ import './admin';
 import './treeview';
 import './sidebar';
 import './base';
-import './turbo';
 import * as stimulus from '@hotwired/stimulus';
 
 import { sonataApplication } from './stimulus';

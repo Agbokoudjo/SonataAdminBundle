@@ -7,8 +7,8 @@
  * file that was distributed with this source code.
  */
 /* SCSS internes */
-@use './styles' as *;
 @use './layout' as *;
+@use './styles' as *;
 @use './mobile' as *;
 // @use './tree' as *;
 @use './flashmessage' as *;
