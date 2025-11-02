@@ -22,16 +22,6 @@ use Twig\TwigFilter;
 final class RenderElementExtension extends AbstractExtension
 {
     /**
-     * NEXT_MAJOR: Remove this constructor.
-     *
-     * @internal This class should only be used through Twig
-     */
-    public function __construct(
-        private RenderElementRuntime $renderElementRuntime,
-    ) {
-    }
-
-    /**
      * @return TwigFilter[]
      */
     public function getFilters(): array
@@ -68,95 +58,4 @@ final class RenderElementExtension extends AbstractExtension
         ];
     }
 
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7 use RenderElementRuntime::renderListElement() instead
-     *
-     * render a list element from the FieldDescription.
-     *
-     * @param object|mixed[]       $listElement
-     * @param array<string, mixed> $params
-     */
-    public function renderListElement(
-        Environment $environment,
-        $listElement,
-        FieldDescriptionInterface $fieldDescription,
-        array $params = [],
-    ): string {
-        @trigger_error(\sprintf(
-            'The method "%s()" is deprecated since sonata-project/admin-bundle 4.7 and will be removed in 5.0.'
-            .'  Use "%s::%s()" instead.',
-            __METHOD__,
-            RenderElementRuntime::class,
-            __FUNCTION__
-        ), \E_USER_DEPRECATED);
-
-        return $this->renderElementRuntime->renderListElement($environment, $listElement, $fieldDescription, $params);
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7 use RenderElementRuntime::renderViewElement() instead
-     */
-    public function renderViewElement(
-        Environment $environment,
-        FieldDescriptionInterface $fieldDescription,
-        object $object,
-    ): string {
-        @trigger_error(\sprintf(
-            'The method "%s()" is deprecated since sonata-project/admin-bundle 4.7 and will be removed in 5.0.'
-            .'  Use "%s::%s()" instead.',
-            __METHOD__,
-            RenderElementRuntime::class,
-            __FUNCTION__
-        ), \E_USER_DEPRECATED);
-
-        return $this->renderElementRuntime->renderViewElement($environment, $fieldDescription, $object);
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7 use RenderElementRuntime::renderViewElementCompare() instead
-     *
-     * render a compared view element.
-     */
-    public function renderViewElementCompare(
-        Environment $environment,
-        FieldDescriptionInterface $fieldDescription,
-        mixed $baseObject,
-        mixed $compareObject,
-    ): string {
-        @trigger_error(\sprintf(
-            'The method "%s()" is deprecated since sonata-project/admin-bundle 4.7 and will be removed in 5.0.'
-            .'  Use "%s::%s()" instead.',
-            __METHOD__,
-            RenderElementRuntime::class,
-            __FUNCTION__
-        ), \E_USER_DEPRECATED);
-
-        return $this->renderElementRuntime->renderViewElementCompare($environment, $fieldDescription, $baseObject, $compareObject);
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7 use RenderElementRuntime::renderRelationElement() instead
-     *
-     * @throws \RuntimeException
-     */
-    public function renderRelationElement(mixed $element, FieldDescriptionInterface $fieldDescription): mixed
-    {
-        @trigger_error(\sprintf(
-            'The method "%s()" is deprecated since sonata-project/admin-bundle 4.7 and will be removed in 5.0.'
-            .'  Use "%s::%s()" instead.',
-            __METHOD__,
-            RenderElementRuntime::class,
-            __FUNCTION__
-        ), \E_USER_DEPRECATED);
-
-        return $this->renderElementRuntime->renderRelationElement($element, $fieldDescription);
-    }
 }

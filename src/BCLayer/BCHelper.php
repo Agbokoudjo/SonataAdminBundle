@@ -23,6 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 final class BCHelper
 {
     /**
+     * @deprecated since version 5.x, to be removed in 6.0. Use get_class() with a proper ProxyResolverInterface instead.
      * @return class-string
      */
     public static function getClass(object $object): string

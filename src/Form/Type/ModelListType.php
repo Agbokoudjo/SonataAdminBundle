@@ -71,13 +71,8 @@ final class ModelListType extends AbstractType
         $view->vars['btn_edit'] = $options['btn_edit'];
         $view->vars['btn_list'] = $options['btn_list'];
         $view->vars['btn_delete'] = $options['btn_delete'];
-
-        // NEXT_MAJOR: Remove the btn_catalogue usage.
-        $view->vars['btn_translation_domain'] =
-            'SonataAdminBundle' !== $options['btn_translation_domain']
-                ? $options['btn_translation_domain']
-                : $options['btn_catalogue'];
-        $view->vars['btn_catalogue'] = $options['btn_catalogue'];
+        $view->vars['btn_translation_domain'] =$options['btn_translation_domain'];
+        $view->vars['btn_translation_domain'] = $options['btn_translation_domain'];
     }
 
     public function configureOptions(OptionsResolver $resolver): void
@@ -87,26 +82,12 @@ final class ModelListType extends AbstractType
             'btn_edit' => 'link_edit',
             'btn_list' => 'link_list',
             'btn_delete' => 'link_delete',
-            'btn_catalogue' => 'SonataAdminBundle', // NEXT_MAJOR: Remove this option
             'btn_translation_domain' => 'SonataAdminBundle',
         ]);
 
         $resolver->setRequired(['model_manager', 'class']);
         $resolver->setAllowedTypes('model_manager', ModelManagerInterface::class);
         $resolver->setAllowedTypes('class', 'string');
-
-        $resolver->setDeprecated(
-            'btn_catalogue',
-            'sonata-project/admin-bundle',
-            '4.9',
-            static function (Options $options, mixed $value): string {
-                if ('SonataAdminBundle' !== $value) {
-                    return 'Passing a value to option "btn_catalogue" is deprecated! Use "btn_translation_domain" instead!';
-                }
-
-                return '';
-            },
-        ); // NEXT_MAJOR: Remove this deprecation notice.
     }
 
     /**

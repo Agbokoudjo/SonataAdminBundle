@@ -122,17 +122,6 @@ interface FilterInterface
     public function getFieldType(): string;
 
     /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.15 use getFormOptions() instead.
-     *
-     * Returns the main widget used to render the filter.
-     *
-     * @return array{string, array<string, mixed>}
-     */
-    public function getRenderSettings(): array;
-
-    /**
      * Returns true if filter is active.
      */
     public function isActive(): bool;

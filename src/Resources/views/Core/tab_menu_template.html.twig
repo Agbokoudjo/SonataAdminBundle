@@ -108,7 +108,7 @@
     {%- set classes = classes|merge(['dropdown-toggle']) %}
     {%- set attributes = item.linkAttributes %}
     {%- set attributes = attributes|merge({'class': classes|join(' ')}) %}
-    {%- set attributes = attributes|merge({'data-toggle': 'dropdown'}) %}
+    {%- set attributes = attributes|merge({'data-bs-toggle': 'dropdown'}) %}
     <a href="#"{{ macros.attributes(attributes) }}>
         {% if item.attribute('icon') is not empty %}
             {{ item.attribute('icon')|parse_icon }}
@@ -119,9 +119,8 @@
 {% endblock %}
 
 {% block label %}
-{# We use method accessor instead of ".label" since `item` implements `ArrayAccess` and could have a property called "label". #}
 {{-
-    item.getLabel()|trans(
+    item.label()|trans(
         item.getExtra('translation_params', {}),
         item.getExtra(
             'translation_domain',

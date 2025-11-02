@@ -1,13 +1,12 @@
 {% for menu in items %}
     {%- set translation_domain = menu.extra('translation_domain', 'messages') -%}
-    {# We use method accessor instead of ".label" since `menu` implements `ArrayAccess` and could have a property called "label". #}
-    {%- set label = menu.getLabel() -%}
+    {%- set label = menu.label -%}
     {%- if translation_domain is not same as(false) -%}
         {%- set label = label|trans(menu.extra('translation_params', {}), translation_domain) -%}
     {%- endif -%}
 
     {% if not loop.last %}
-        <li>
+        <li class="breadcrumb-item">
             {% if menu.uri is not empty %}
                 <a href="{{ menu.uri }}">
                     {% if menu.extra('safe_label', true) %}
@@ -21,6 +20,6 @@
             {% endif %}
         </li>
     {% else %}
-        <li class="active"><span>{{ label|u.truncate(100, '...') }}</span></li>
+        <li class="breadcrumb-item active" aria-current="page"><span>{{ label|u.truncate(100, '...') }}</span></li>
     {% endif %}
 {% endfor %}

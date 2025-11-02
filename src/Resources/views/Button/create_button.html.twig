@@ -12,7 +12,7 @@ file that was distributed with this source code.
 {% if admin.hasAccess('create') and admin.hasRoute('create') %}
     {% if admin.subClasses is empty %}
         <li>
-            <a class="sonata-action-element" href="{{ admin.generateUrl('create') }}">
+            <a class="btn btn-create text-decoration-none sonata-action-element" href="{{ admin.generateUrl('create') }}">
                 <i class="fas fa-plus-circle" aria-hidden="true"></i>
                 {{ 'link_action_create'|trans({}, 'SonataAdminBundle') }}
             </a>
@@ -20,7 +20,7 @@ file that was distributed with this source code.
     {% else %}
         {% for subclass in admin.subclasses|keys %}
             <li>
-                <a class="sonata-action-element" href="{{ admin.generateUrl('create', {'subclass': subclass}) }}">
+                <a class="btn btn-create-subclass sonata-action-element" href="{{ admin.generateUrl('create', {'subclass': subclass}) }}">
                     <i class="fas fa-plus-circle" aria-hidden="true"></i>
                     {{ 'link_action_create'|trans({}, 'SonataAdminBundle') }} {{ subclass|trans({}, admin.translationdomain) }}
                 </a>

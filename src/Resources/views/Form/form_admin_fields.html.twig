@@ -8,18 +8,20 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 
 #}
-
-{% extends 'form_div_layout.html.twig' %}
+ 
+{% extends 'bootstrap_5_layout.html.twig' %} 
 
 {% block form_errors -%}
     {% if errors|length > 0 %}
-        {% if not form.parent %}<div class="alert alert-danger">{% endif %}
+        {% if not form.parent %}
+        <div class="alert alert-danger" role="alert">{% endif %}
             <ul class="list-unstyled">
                 {% for error in errors %}
                     <li><i class="fas fa-exclamation-circle" aria-hidden="true"></i> {{ error.message }}</li>
                 {% endfor %}
             </ul>
-        {% if not form.parent %}</div>{% endif %}
+        {% if not form.parent %}
+        </div>{% endif %}
     {% endif %}
 {%- endblock form_errors %}
 
@@ -54,11 +56,11 @@ file that was distributed with this source code.
         {% if money_pattern matches '/^{{ widget }}/' %}
             <div class="input-group">
                 {{- block('form_widget_simple') -}}
-                <span class="input-group-addon">{{ currencySymbol }}</span>
+                <span class="input-group-text input-group-addon">{{ currencySymbol }}</span>
             </div>
         {% elseif money_pattern matches '/{{ widget }}$/' %}
             <div class="input-group">
-                <span class="input-group-addon">{{ currencySymbol }}</span>
+                <span class="input-group-text input-group-addon">{{ currencySymbol }}</span>
                 {{- block('form_widget_simple') -}}
             </div>
         {% endif %}
@@ -69,31 +71,9 @@ file that was distributed with this source code.
     {% set type = type|default('text') %}
     <div class="input-group">
         {{ block('form_widget_simple') }}
-        <span class="input-group-addon">%</span>
+        <span class="input-group-text input-group-addon">%</span>
     </div>
 {% endblock percent_widget %}
-
-{% block checkbox_widget -%}
-    {% set parent_label_class = parent_label_class|default('') -%}
-    {% if 'checkbox-inline' in parent_label_class %}
-        {{- form_label(form, null, { widget: parent() }) -}}
-    {% else -%}
-        <div class="checkbox">
-            {{- form_label(form, null, { widget: parent() }) -}}
-        </div>
-    {%- endif %}
-{%- endblock checkbox_widget %}
-
-{% block radio_widget -%}
-    {%- set parent_label_class = parent_label_class|default('') -%}
-    {% if 'radio-inline' in parent_label_class %}
-        {{- form_label(form, null, { widget: parent() }) -}}
-    {% else -%}
-        <div class="radio">
-            {{- form_label(form, null, { widget: parent() }) -}}
-        </div>
-    {%- endif %}
-{%- endblock radio_widget %}
 
 {# Labels #}
 {% block form_label %}
@@ -101,7 +81,7 @@ file that was distributed with this source code.
         {% set label_class = 'col-sm-3' %}
     {% endif %}
 
-    {% set label_class = label_class|default('') ~ ' control-label' %}
+    {% set label_class = label_class|default('') ~ ' form-label' %}
 
     {% if label is not same as(false) %}
         {% set label_attr = label_attr|merge({'class': label_attr.class|default('') ~ ' ' ~ label_class }) %}
@@ -150,6 +130,10 @@ file that was distributed with this source code.
     {% endif %}
     {# Do not display the label if widget is not defined in order to prevent double label rendering #}
     {% if widget is defined %}
+         {%- set label_attr_class = label_attr_class|default(label_attr.class|default('')) -%}
+        {%- if 'btn' not in label_attr_class -%}
+            {%- set label_attr_class = label_attr_class ~ ' form-check-label' -%}
+        {%- endif -%}
         {% if required %}
             {% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' required')|trim}) %}
         {% endif %}

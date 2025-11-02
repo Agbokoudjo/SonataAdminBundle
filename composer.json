@@ -23,6 +23,20 @@
         }
     ],
     "homepage": "https://docs.sonata-project.org/projects/SonataAdminBundle",
+    "repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/Agbokoudjo/form-extensions"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/Agbokoudjo/twig-extensions"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/Agbokoudjo/SonataBlockBundle"
+    }
+],
     "require": {
         "php": "^8.1",
         "doctrine/collections": "^1.6 || ^2.0",
@@ -31,11 +45,19 @@
         "knplabs/knp-menu-bundle": "^3.0",
         "psr/container": "^1.0 || ^2.0",
         "psr/log": "^2.0 || ^3.0",
+<<<<<<< HEAD
         "sonata-project/block-bundle": "^5.0",
         "sonata-project/doctrine-extensions": "^2.0",
         "sonata-project/exporter": "^3.1.1",
         "sonata-project/form-extensions": "^2.0",
         "sonata-project/twig-extensions": "^2.0",
+=======
+        "sonata-project/block-bundle": "dev-feature/bootstrap5-block-bundle",
+        "sonata-project/doctrine-extensions": "^1.8 || ^2.0",
+        "sonata-project/exporter": "^2.14 || ^3.1.1",
+        "sonata-project/form-extensions": "dev-feature/bootstrap5-form-fields",
+        "sonata-project/twig-extensions": "dev-feature/bootstrap5-flash",
+>>>>>>> 0095bcc37 (Mise à jour des templates vers Bootstrap 5 et AdminLTE v4)
         "symfony/asset": "^6.4 || ^7.1",
         "symfony/config": "^6.4 || ^7.1",
         "symfony/console": "^6.4 || ^7.1",

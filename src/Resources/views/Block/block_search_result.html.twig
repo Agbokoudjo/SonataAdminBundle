@@ -31,12 +31,12 @@ file that was distributed with this source code.
                     {% if has_results %}
                         <span class="badge">{{ results_count }}</span>
                     {% elseif admin.hasRoute('create') and admin.hasAccess('create') %}
-                        <a href="{{ admin.generateUrl('create') }}" class="btn btn-box-tool">
+                        <a href="{{ admin.generateUrl('create') }}" class="btn btn-box-tool btn-box-tool-create  ">
                             <i class="fas fa-plus" aria-hidden="true"></i>
                         </a>
                     {% endif %}
                     {% if admin.hasRoute('list') and admin.hasAccess('list') %}
-                        <a href="{{ admin.generateUrl('list') }}" class="btn btn-box-tool">
+                        <a href="{{ admin.generateUrl('list') }}" class="btn btn-box-tool btn-box-tool-list ">
                             <i class="fas fa-list" aria-hidden="true"></i>
                         </a>
                     {% endif %}

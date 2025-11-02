@@ -23,17 +23,19 @@ final class IconRuntime implements RuntimeExtensionInterface
             return $icon;
         }
 
+        // On autorise FontAwesome, Bootstrap Icons, et AdminLTE nav-icon
         if (
-            !str_starts_with($icon, 'fa ')
-            && !str_starts_with($icon, 'fas ')
-            && !str_starts_with($icon, 'far ')
-            && !str_starts_with($icon, 'fab ')
-            && !str_starts_with($icon, 'fal ')
-            && !str_starts_with($icon, 'fad ')
+            str_starts_with($icon, 'fa ')
+            || str_starts_with($icon, 'fas ')
+            || str_starts_with($icon, 'far ')
+            || str_starts_with($icon, 'fab ')
+            || str_starts_with($icon, 'fal ')
+            || str_starts_with($icon, 'fad ')
+            || str_starts_with($icon, 'bi ')
+            || str_starts_with($icon, 'nav-icon ')
         ) {
-            throw new \InvalidArgumentException(\sprintf('The icon format "%s" is not supported.', $icon));
+            return \sprintf('<i class="%s" aria-hidden="true"></i>', $icon);
         }
-
-        return \sprintf('<i class="%s" aria-hidden="true"></i>', $icon);
+        return \sprintf('<i class="%s"></i>', $icon);
     }
 }

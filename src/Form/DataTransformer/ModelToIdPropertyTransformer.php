@@ -100,9 +100,6 @@ final class ModelToIdPropertyTransformer implements DataTransformerInterface
     }
 
     /**
-     * NEXT_MAJOR: Change array shape to array{labels: array<string>, ids: array<int|string>}
-     * and update the sonata_type_model_autocomplete.html.twig template.
-     *
      * @param object|array<object>|\Traversable<object>|null $value
      *
      * @throws \InvalidArgumentException
@@ -115,50 +112,45 @@ final class ModelToIdPropertyTransformer implements DataTransformerInterface
      */
     public function transform($value): array
     {
-        $result = [];
-
         if (null === $value) {
-            return $result;
+            return ['ids' => [], 'labels' => []];
         }
+
+        $collection = [];
 
         if ($this->multiple) {
             if (!\is_array($value) && substr($value::class, -1 * \strlen($this->className)) === $this->className) {
                 throw new InvalidArgumentException(
-                    'A multiple selection must be passed a collection not a single value.'
-                    .' Make sure that form option "multiple=false" is set for many-to-one relation and "multiple=true"'
-                    .' is set for many-to-many or one-to-many relations.'
+                    'A multiple selection must be passed a collection, not a single value.'
+                        . ' Ensure "multiple=true" is set for many-to-many or one-to-many relations.'
                 );
             }
             if (is_iterable($value)) {
                 $collection = $value;
             } else {
-                throw new InvalidArgumentException(
-                    'A multiple selection must be passed a collection not a single value.'
-                    .' Make sure that form option "multiple=false" is set for many-to-one relation and "multiple=true"'
-                    .' is set for many-to-many or one-to-many relations.'
-                );
+                throw new InvalidArgumentException('Expected iterable value for multiple selection.');
             }
         } else {
             if (!\is_array($value) && substr($value::class, -1 * \strlen($this->className)) === $this->className) {
                 $collection = [$value];
             } elseif (is_iterable($value)) {
                 throw new InvalidArgumentException(
-                    'A single selection must be passed a single value not a collection.'
-                    .' Make sure that form option "multiple=false" is set for many-to-one relation and "multiple=true"'
-                    .' is set for many-to-many or one-to-many relations.'
+                    'A single selection must be passed a single object, not a collection.'
+                        . ' Ensure "multiple=false" is set for many-to-one relation.'
                 );
             } else {
                 $collection = [$value];
             }
         }
 
+        $ids = [];
         $labels = [];
 
         /** @phpstan-var array<T>|\Traversable<T> $collection */
         foreach ($collection as $model) {
             $id = $this->modelManager->getNormalizedIdentifier($model);
             if (null === $id) {
-                throw new TransformationFailedException(\sprintf(
+                throw new TransformationFailedException(sprintf(
                     'No identifier was found for the model "%s".',
                     $this->className
                 ));
@@ -169,20 +161,19 @@ final class ModelToIdPropertyTransformer implements DataTransformerInterface
             } elseif ($model instanceof \Stringable) {
                 $label = $model->__toString();
             } else {
-                throw new TransformationFailedException(\sprintf(
-                    'Unable to convert the model %s to String, model must have a \'__toString()\' method defined',
+                throw new TransformationFailedException(sprintf(
+                    'The model %s must have a "__toString()" method.',
                     $this->className
                 ));
             }
 
-            $result[] = $id;
+            $ids[] = $id;
             $labels[] = $label;
         }
 
-        if ([] !== $labels) {
-            $result['_labels'] = $labels;
-        }
-
-        return $result;
+        return [
+            'ids' => $ids,
+            'labels' => $labels,
+        ];
     }
 }

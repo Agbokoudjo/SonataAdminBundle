@@ -21,6 +21,7 @@ final class CanonicalizeRuntime implements RuntimeExtensionInterface
     /**
      * @internal This class should only be used through Twig
      */
+<<<<<<< HEAD
     public function __construct(private RequestStack $requestStack)
     {
     }
@@ -45,6 +46,14 @@ final class CanonicalizeRuntime implements RuntimeExtensionInterface
     }
 
     /**
+=======
+    public function __construct(
+        private RequestStack $requestStack
+    ) {
+    }
+
+    /**
+>>>>>>> 0095bcc37 (Mise à jour des templates vers Bootstrap 5 et AdminLTE v4)
      * Returns a canonicalized locale for "select2" NPM library,
      * or `null` if the locale's language is "en", which doesn't require localization.
      */

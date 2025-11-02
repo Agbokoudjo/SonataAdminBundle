@@ -36,7 +36,7 @@ interface AuditReaderInterface
      *
      * @phpstan-param class-string<T> $className
      */
-    public function findRevisionHistory(string $className, int $limit = 20, int $offset = 0): array;
+    public function findRevisionHistory(string $className, ?int $limit = null, int $offset = 0): array;
 
     /**
      * @param int|string $revisionId

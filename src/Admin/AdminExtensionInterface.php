@@ -97,8 +97,6 @@ interface AdminExtensionInterface
     public function configure(AdminInterface $admin): void;
 
     /**
-     * NEXT_MAJOR: Add return typehint `array`.
-     *
      * Get a chance to add persistent parameters.
      *
      * @param array<string, mixed> $parameters
@@ -107,7 +105,7 @@ interface AdminExtensionInterface
      *
      * @phpstan-param AdminInterface<T> $admin
      */
-    public function configurePersistentParameters(AdminInterface $admin, array $parameters);
+    public function configurePersistentParameters(AdminInterface $admin, array $parameters):array;
 
     /**
      * Return the controller access mapping.

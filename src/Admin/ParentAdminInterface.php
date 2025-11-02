@@ -23,13 +23,11 @@ namespace Sonata\AdminBundle\Admin;
 interface ParentAdminInterface
 {
     /**
-     * NEXT_MAJOR: Change to ?string $field = null.
-     *
      * add an Admin child to the current one.
      *
      * @param AdminInterface<object> $child
      */
-    public function addChild(AdminInterface $child, string $field): void;
+    public function addChild(AdminInterface $child, ?string $field = null): void;
 
     /**
      * Returns true or false if an Admin child exists for the given $code.

@@ -89,33 +89,6 @@ interface ModelManagerInterface
     public function createQuery(string $class): ProxyQueryInterface;
 
     /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * Get the identifiers of this model class.
-     *
-     * This returns an array to handle cases like a primary key that is
-     * composed of multiple columns. If you need a string representation,
-     * use getNormalizedIdentifier resp. getUrlSafeIdentifier
-     *
-     * @return array<int|string> list of all identifiers of this model
-     *
-     * @phpstan-param T $model
-     */
-    public function getIdentifierValues(object $model): array;
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * Get a list of the field names models of the specified fully qualified
-     * class name used to store the identifier.
-     *
-     * @return string[]
-     *
-     * @phpstan-param class-string<T> $class
-     */
-    public function getIdentifierFieldNames(string $class): array;
-
-    /**
      * Get the identifiers for this model class as a string.
      *
      * @phpstan-param T $model
@@ -142,13 +115,11 @@ interface ModelManagerInterface
     public function supportsQuery(object $query): bool;
 
     /**
-     * NEXT_MAJOR: Add typehint.
-     *
      * @return iterable<object>
      *
      * @phpstan-return iterable<T>
      */
-    public function executeQuery(object $query);
+    public function executeQuery(object $query): iterable;
 
     /**
      * @return string[]

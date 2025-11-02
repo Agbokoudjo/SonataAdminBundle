@@ -230,22 +230,11 @@ abstract class Filter implements FilterInterface, ChainableFilterInterface
     }
 
     /**
-     * NEXT_MAJOR: Remove this method.
+     * {@inheritdoc}
      */
-    public function getRenderSettings(): array
+    public function getFormOptions(): array
     {
-        // @phpstan-ignore-next-line
-        if (!method_exists($this, 'getFormOptions')) {
-            throw new \BadMethodCallException('You MUST implement `getFormOptions()`.');
-        }
-
-        /** @var array<string, mixed> $formOptions */
-        $formOptions = $this->getFormOptions();
-
-        return [
-            FilterDataType::class,
-            $formOptions,
-        ];
+        return $this->getFieldOptions();
     }
 
     final public function showFilter(): ?bool

@@ -25,28 +25,6 @@ final class AdminValueResolver implements CompatibleValueResolverInterface
     ) {
     }
 
-    // TODO: Deprecate this method when dropping support of Symfony < 6.2
-    public function supports(Request $request, ArgumentMetadata $argument): bool
-    {
-        $type = $argument->getType();
-
-        if (null === $type) {
-            return false;
-        }
-
-        if (AdminInterface::class !== $type && !is_subclass_of($type, AdminInterface::class)) {
-            return false;
-        }
-
-        try {
-            $admin = $this->adminFetcher->get($request);
-        } catch (\InvalidArgumentException) {
-            return false;
-        }
-
-        return is_a($admin, $type);
-    }
-
     /**
      * @return iterable<AdminInterface<object>>
      */

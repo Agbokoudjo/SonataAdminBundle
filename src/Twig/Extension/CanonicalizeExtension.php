@@ -20,16 +20,6 @@ use Twig\TwigFunction;
 final class CanonicalizeExtension extends AbstractExtension
 {
     /**
-     * NEXT_MAJOR: Remove this constructor.
-     *
-     * @internal This class should only be used through Twig
-     */
-    public function __construct(
-        private CanonicalizeRuntime $canonicalizeRuntime,
-    ) {
-    }
-
-    /**
      * @return TwigFunction[]
      */
     public function getFunctions(): array
@@ -39,6 +29,7 @@ final class CanonicalizeExtension extends AbstractExtension
             new TwigFunction('canonicalize_locale_for_select2', [CanonicalizeRuntime::class, 'getCanonicalizedLocaleForSelect2']),
         ];
     }
+<<<<<<< HEAD
 
     /**
      * NEXT_MAJOR: Remove this method.
@@ -79,4 +70,6 @@ final class CanonicalizeExtension extends AbstractExtension
 
         return $this->canonicalizeRuntime->getCanonicalizedLocaleForSelect2();
     }
+=======
+>>>>>>> 0095bcc37 (Mise à jour des templates vers Bootstrap 5 et AdminLTE v4)
 }

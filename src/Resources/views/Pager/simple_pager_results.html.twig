@@ -10,12 +10,12 @@ file that was distributed with this source code.
 #}
 
 {% extends '@SonataAdmin/Pager/base_results.html.twig' %}
-
+<p class="simple_pager_results">
 {% block num_results %}
     {% if admin.datagrid.pager.lastPage != admin.datagrid.pager.page %}
         {{ 'list_results_count_prefix'|trans({}, 'SonataAdminBundle') }}
     {% endif %}
-    {% trans with {'%count%': admin.datagrid.pager.countResults()} from 'SonataAdminBundle' %}list_results_count{% endtrans %}
+    <span class="num_results">{% trans with {'%count%': admin.datagrid.pager.countResults()} from 'SonataAdminBundle' %}list_results_count{% endtrans %}</span>
     &nbsp;-&nbsp;
 {% endblock %}
 
@@ -29,3 +29,4 @@ file that was distributed with this source code.
     {% endif %}
     &nbsp;-&nbsp;
 {% endblock %}
+</p>

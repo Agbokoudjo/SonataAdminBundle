@@ -196,38 +196,6 @@ final class FormTypeFieldExtension extends AbstractTypeExtension
         ]);
     }
 
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.3 and will be removed in 5.0.
-     *
-     * return the value related to FieldDescription, if the associated object does no
-     * exists => a temporary one is created.
-     */
-    public function getValueFromFieldDescription(?object $object, FieldDescriptionInterface $fieldDescription): mixed
-    {
-        @trigger_error(\sprintf(
-            'The method "%s()" is deprecated since sonata-project/admin-bundle 4.3 and will be removed in 5.0.',
-            __METHOD__
-        ), \E_USER_DEPRECATED);
-
-        $value = null;
-
-        if (null === $object) {
-            return null;
-        }
-
-        try {
-            $value = $fieldDescription->getValue($object);
-        } catch (NoValueException) {
-            if ($fieldDescription->hasAssociationAdmin()) {
-                $value = $fieldDescription->getAssociationAdmin()->getNewInstance();
-            }
-        }
-
-        return $value;
-    }
-
     private function getClass(FormBuilderInterface $formBuilder): string
     {
         foreach ($this->getTypes($formBuilder) as $type) {

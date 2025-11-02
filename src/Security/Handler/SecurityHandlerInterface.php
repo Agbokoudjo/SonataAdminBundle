@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace Sonata\AdminBundle\Security\Handler;
 
 use Sonata\AdminBundle\Admin\AdminInterface;
-use Symfony\Component\ExpressionLanguage\Expression;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -22,12 +21,10 @@ use Symfony\Component\ExpressionLanguage\Expression;
 interface SecurityHandlerInterface
 {
     /**
-     * NEXT_MAJOR: Restrict $attributes typehint to string|Expression and rename it $attribute.
-     *
      * @param AdminInterface<object>                     $admin
-     * @param string|Expression|array<string|Expression> $attributes
+     * @param string $attribute
      */
-    public function isGranted(AdminInterface $admin, $attributes, ?object $object = null): bool;
+    public function isGranted(AdminInterface $admin, string $attribute, ?object $object = null): bool;
 
     /**
      * Get a sprintf template to get the role.

@@ -57,11 +57,6 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  */
 abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterface, DomainObjectInterface, AdminTreeInterface
 {
-    // NEXT_MAJOR: Remove the CONTEXT constants.
-    /** @deprecated */
-    public const CONTEXT_MENU = 'menu';
-    /** @deprecated */
-    public const CONTEXT_DASHBOARD = 'dashboard';
 
     public const CLASS_REGEX =
         '@
@@ -102,23 +97,6 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
     private const DEFAULT_LIST_PER_PAGE_RESULTS = 25;
     private const DEFAULT_LIST_PER_PAGE_OPTIONS = [10, 25, 50, 100, 250];
 
-    /**
-     * @deprecated since sonata-project/admin-bundle 4.15, will be removed in 5.0.
-     *
-     * The base route name used to generate the routing information.
-     *
-     * @var string|null
-     */
-    protected $baseRouteName;
-
-    /**
-     * @deprecated since sonata-project/admin-bundle 4.15, will be removed in 5.0.
-     *
-     * The base route pattern used to generate the routing information.
-     *
-     * @var string|null
-     */
-    protected $baseRoutePattern;
 
     /**
      * The label class name  (used in the title/breadcrumb ...).
@@ -596,7 +574,7 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
             $class = $modelManager instanceof ProxyResolverInterface
                 ? $modelManager->getRealClass($this->subject)
                 // NEXT_MAJOR: Change to `\get_class($this->subject)` instead
-                : BCHelper::getClass($this->subject);
+                : \get_class($this->subject);
 
             return $class;
         }
@@ -1499,62 +1477,16 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
         return $this->getCode();
     }
 
-    public function showInDashboard(): bool
-    {
-        /**
-         * NEXT_MAJOR: Remove those lines and uncomment the last one.
-         *
-         * @psalm-suppress DeprecatedMethod, DeprecatedConstant
-         */
-        $permissionShow = $this->getPermissionsShow(self::CONTEXT_DASHBOARD, 'sonata_deprecation_mute');
-        $permission = 1 === \count($permissionShow) ? reset($permissionShow) : $permissionShow;
+    public function showInDashboard(): bool {return $this->isGranted('LIST');}
 
-        return $this->isGranted($permission);
-        // return $this->isGranted('LIST');
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7 use showInDashboard instead
-     *
-     * @psalm-suppress DeprecatedMethod
-     */
-    final public function showIn(string $context): bool
-    {
-        if ('sonata_deprecation_mute' !== (\func_get_args()[1] ?? null)) {
-            @trigger_error(\sprintf(
-                'The "%s()" method is deprecated since sonata-project/admin-bundle version 4.7 and will be'
-                .' removed in 5.0 version. Use showInDashboard() instead.',
-                __METHOD__
-            ), \E_USER_DEPRECATED);
-        }
-
-        $permissionShow = $this->getPermissionsShow($context, 'sonata_deprecation_mute');
-        // Avoid isGranted deprecation if there is only one permission show.
-        $permission = 1 === \count($permissionShow) ? reset($permissionShow) : $permissionShow;
-
-        return $this->isGranted($permission);
-    }
 
     final public function createObjectSecurity(object $object): void
     {
         $this->getSecurityHandler()->createObjectSecurity($this, $object);
     }
 
-    final public function isGranted($name, ?object $object = null): bool
+    final public function isGranted(string $name, ?object $object = null): bool
     {
-        if (\is_array($name)) {
-            @trigger_error(
-                \sprintf(
-                    'Passing an array as argument 1 of "%s()" is deprecated since sonata-project/admin-bundle 4.6'
-                    .' and will throw an error in 5.0. You MUST pass a string instead.',
-                    __METHOD__
-                ),
-                \E_USER_DEPRECATED
-            );
-        }
-
         $objectRef = null !== $object ? \sprintf('/%s#%s', spl_object_hash($object), $this->id($object) ?? '') : '';
         $key = md5(json_encode($name, \JSON_THROW_ON_ERROR).$objectRef);
 
@@ -1822,22 +1754,8 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
     {
     }
 
-    /**
-     * @psalm-suppress DeprecatedProperty
-     */
     protected function generateBaseRoutePattern(bool $isChildAdmin = false): string
     {
-        // NEXT_MAJOR: Remove this code
-        if (null !== $this->baseRoutePattern) {
-            @trigger_error(\sprintf(
-                'Overriding the baseRoutePattern property is deprecated since sonata-project/admin-bundle 4.15.'
-                .' You MUST override the method %s() instead.',
-                __METHOD__
-            ), \E_USER_DEPRECATED);
-
-            return $this->baseRoutePattern;
-        }
-
         preg_match(self::CLASS_REGEX, $this->getModelClass(), $matches);
 
         if (!isset($matches[1], $matches[3], $matches[5])) {
@@ -1864,17 +1782,6 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
      */
     protected function generateBaseRouteName(bool $isChildAdmin = false): string
     {
-        // NEXT_MAJOR: Remove this code
-        if (null !== $this->baseRouteName) {
-            @trigger_error(\sprintf(
-                'Overriding the baseRouteName property is deprecated since sonata-project/admin-bundle 4.15.'
-                .' You MUST override the method %s() instead.',
-                __METHOD__
-            ), \E_USER_DEPRECATED);
-
-            return $this->baseRouteName;
-        }
-
         preg_match(self::CLASS_REGEX, $this->getModelClass(), $matches);
 
         if (!isset($matches[1], $matches[3], $matches[5])) {
@@ -2200,27 +2107,6 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
         return [];
     }
 
-    /**
-     * Return the list of permissions the user should have in order to display the admin.
-     *
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7
-     *
-     * @return string[]
-     */
-    protected function getPermissionsShow(string $context): array
-    {
-        if ('sonata_deprecation_mute' !== (\func_get_args()[1] ?? null)) {
-            @trigger_error(\sprintf(
-                'The "%s()" method is deprecated since sonata-project/admin-bundle version 4.7 and will be'
-                .' removed in 5.0 version.',
-                __METHOD__
-            ), \E_USER_DEPRECATED);
-        }
-
-        return ['LIST'];
-    }
 
     /**
      * Configures a list of default filters.
