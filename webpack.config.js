@@ -15,19 +15,9 @@ Encore
     .setPublicPath('/bundles/sonataadmin') // pour Sonata Admin, souvent './' ou '/bundles/sonataadmin'
     .setManifestKeyPrefix('bundles/sonataadmin')
 
-<<<<<<< HEAD
-  .cleanupOutputBeforeBuild()
-  .enableSassLoader()
-  .enablePostCssLoader()
-  .enableVersioning(false)
-  .enableSourceMaps(false)
-  .autoProvidejQuery()
-  .disableSingleRuntimeChunk()
-=======
     // Nettoyer le dossier de build avant compilation
     .cleanupOutputBeforeBuild()
     .disableSingleRuntimeChunk()
->>>>>>> 926460c9c (Update Sonata Admin assets and Webpack Encore build)
 
     // Sass / PostCSS minimal
     .enableSassLoader()

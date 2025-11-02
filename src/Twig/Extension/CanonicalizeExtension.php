@@ -29,47 +29,4 @@ final class CanonicalizeExtension extends AbstractExtension
             new TwigFunction('canonicalize_locale_for_select2', [CanonicalizeRuntime::class, 'getCanonicalizedLocaleForSelect2']),
         ];
     }
-<<<<<<< HEAD
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7
-     *
-     * @phpstan-ignore return.unusedType
-     */
-    public function getCanonicalizedLocaleForMoment(): ?string
-    {
-        trigger_deprecation(
-            'sonata-project/admin-bundle',
-            '4.7.0',
-            'Method "%s" is deprecated and no-op. It always returns null and will be removed in 5.0.',
-            __METHOD__,
-        );
-
-        return null;
-    }
-
-    /**
-     * NEXT_MAJOR: Remove this method.
-     *
-     * @deprecated since sonata-project/admin-bundle version 4.7 use CanonicalizeRuntime::getCanonicalizedLocaleForSelect2() instead
-     *
-     * Returns a canonicalized locale for "select2" NPM library,
-     * or `null` if the locale's language is "en", which doesn't require localization.
-     */
-    public function getCanonicalizedLocaleForSelect2(): ?string
-    {
-        @trigger_error(\sprintf(
-            'The method "%s()" is deprecated since sonata-project/admin-bundle 4.7 and will be removed in 5.0.'
-            .'  Use "%s::%s()" instead.',
-            __METHOD__,
-            CanonicalizeRuntime::class,
-            __FUNCTION__
-        ), \E_USER_DEPRECATED);
-
-        return $this->canonicalizeRuntime->getCanonicalizedLocaleForSelect2();
-    }
-=======
->>>>>>> 0095bcc37 (Mise à jour des templates vers Bootstrap 5 et AdminLTE v4)
 }

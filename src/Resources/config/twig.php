@@ -40,86 +40,82 @@ return static function (ContainerConfigurator $containerConfigurator): void {
     $containerConfigurator->services()
 
         ->set('sonata.admin.twig.sonata_admin_extension', SonataAdminExtension::class)
-            ->tag('twig.extension')
+        ->tag('twig.extension')
 
         ->set('sonata.admin.twig.sonata_admin_runtime', SonataAdminRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-                service('sonata.admin.pool'),
-            ])
+        ->tag('twig.runtime')
+        ->args([
+            service('sonata.admin.pool'),
+        ])
 
         ->set('sonata.admin.twig.template_registry_extension', TemplateRegistryExtension::class)
-            ->tag('twig.extension')
+        ->tag('twig.extension')
 
         ->set('sonata.admin.twig.template_registry_runtime', TemplateRegistryRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-                service('sonata.admin.global_template_registry'),
-                service('sonata.admin.pool'),
-            ])
+        ->tag('twig.runtime')
+        ->args([
+            service('sonata.admin.global_template_registry'),
+            service('sonata.admin.pool'),
+        ])
 
         ->set('sonata.admin.twig.group_extension', GroupExtension::class)
-            ->tag('twig.extension')
+        ->tag('twig.extension')
 
         ->set('sonata.admin.twig.group_runtime', GroupRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-                service('sonata.admin.pool'),
-            ])
+        ->tag('twig.runtime')
+        ->args([
+            service('sonata.admin.pool'),
+        ])
 
         ->set('sonata.admin.twig.icon_extension', IconExtension::class)
-            ->tag('twig.extension')
+        ->tag('twig.extension')
 
         ->set('sonata.admin.twig.icon_runtime', IconRuntime::class)
-            ->tag('twig.runtime')
+        ->tag('twig.runtime')
 
         ->set('sonata.admin.twig.security_extension', SecurityExtension::class)
-            ->tag('twig.extension')
+        ->tag('twig.extension')
 
         ->set('sonata.admin.twig.security_runtime', SecurityRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-                service('security.authorization_checker'),
-            ])
+        ->tag('twig.runtime')
+        ->args([
+            service('security.authorization_checker'),
+        ])
 
         ->set('sonata.admin.twig.canonicalize_extension', CanonicalizeExtension::class)
-            ->tag('twig.extension')
+        ->tag('twig.extension')
 
         ->set('sonata.admin.twig.canonicalize_runtime', CanonicalizeRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-<<<<<<< HEAD
-                service('request_stack'),
-=======
-                service('request_stack')
->>>>>>> 18662582d (Fix: remove deprecated arrayNode usage in Configuration for Symfony 6.4+)
-            ])
+        ->tag('twig.runtime')
+        ->args([
+            service('request_stack')
+        ])
 
         ->set('sonata.admin.twig.xeditable_extension', XEditableExtension::class)
-            ->tag('twig.extension')
+        ->tag('twig.extension')
 
         ->set('sonata.admin.twig.xeditable_runtime', XEditableRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-                service('translator'),
-                '%sonata.admin.twig.extension.x_editable_type_mapping%',
-            ])
+        ->tag('twig.runtime')
+        ->args([
+            service('translator'),
+            '%sonata.admin.twig.extension.x_editable_type_mapping%',
+        ])
 
         ->set('sonata.admin.twig.render_element_extension', RenderElementExtension::class)
-            ->tag('twig.extension')
-            
+        ->tag('twig.extension')
+
         ->set('sonata.admin.twig.render_element_runtime', RenderElementRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-                service('property_accessor'),
-            ])
+        ->tag('twig.runtime')
+        ->args([
+            service('property_accessor'),
+        ])
 
         ->set('sonata.admin.twig.breadcrumbs_extension', BreadcrumbsExtension::class)
-            ->tag('twig.extension')
-            
+        ->tag('twig.extension')
+
         ->set('sonata.admin.twig.breadcrumbs_runtime', BreadcrumbsRuntime::class)
-            ->tag('twig.runtime')
-            ->args([
-                service('sonata.admin.breadcrumbs_builder'),
-            ]);
+        ->tag('twig.runtime')
+        ->args([
+            service('sonata.admin.breadcrumbs_builder'),
+        ]);
 };
