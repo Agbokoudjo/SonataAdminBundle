@@ -14,38 +14,39 @@ declare(strict_types=1);
 namespace Sonata\AdminBundle\Admin;
 
 use Knp\Menu\ItemInterface;
-use Sonata\AdminBundle\Datagrid\DatagridInterface;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
-use Sonata\AdminBundle\DependencyInjection\Admin\AbstractTaggedAdmin;
-use Sonata\AdminBundle\Exception\AdminClassNotFoundException;
-use Sonata\AdminBundle\FieldDescription\FieldDescriptionCollection;
-use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelHiddenType;
-use Sonata\AdminBundle\Manipulator\ObjectManipulator;
-use Sonata\AdminBundle\Model\ProxyResolverInterface;
-use Sonata\AdminBundle\Object\Metadata;
-use Sonata\AdminBundle\Object\MetadataInterface;
-use Sonata\AdminBundle\Route\RouteCollection;
-use Sonata\AdminBundle\Route\RouteCollectionInterface;
-use Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap;
-use Sonata\AdminBundle\Security\Handler\AclSecurityHandlerInterface;
-use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\AdminBundle\Util\Instantiator;
-use Sonata\AdminBundle\Util\ParametersManipulator;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Object\Metadata;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\BCLayer\BCHelper;
+use Sonata\AdminBundle\Util\Instantiator;
 use Symfony\Component\Form\FormInterface;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Object\MetadataInterface;
+use Symfony\Component\Form\FormBuilderInterface;
+use Sonata\AdminBundle\Form\Type\ModelHiddenType;
+use Sonata\AdminBundle\Datagrid\DatagridInterface;
+use Sonata\AdminBundle\Util\ParametersManipulator;
+use Sonata\AdminBundle\Datagrid\ProxyQueryInterface;
+use Sonata\AdminBundle\Model\ProxyResolverInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface as RoutingUrlGeneratorInterface;
+use Sonata\AdminBundle\Manipulator\ObjectManipulator;
+use Sonata\AdminBundle\Route\RouteCollectionInterface;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Sonata\AdminBundle\Exception\AdminClassNotFoundException;
 use Symfony\Component\Security\Acl\Model\DomainObjectInterface;
+use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
+use Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap;
+use Sonata\AdminBundle\FieldDescription\FieldDescriptionCollection;
+use Sonata\AdminBundle\Security\Handler\AclSecurityHandlerInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Sonata\AdminBundle\DependencyInjection\Admin\AbstractTaggedAdmin;
+use Symfony\Component\PropertyAccess\Exception\UninitializedPropertyException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface as RoutingUrlGeneratorInterface;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -572,7 +573,6 @@ abstract class AbstractAdmin extends AbstractTaggedAdmin implements AdminInterfa
             /** @phpstan-var class-string<T> $class */
             $class = $modelManager instanceof ProxyResolverInterface
                 ? $modelManager->getRealClass($this->subject)
-                // NEXT_MAJOR: Change to `\get_class($this->subject)` instead
                 : \get_class($this->subject);
 
             return $class;
